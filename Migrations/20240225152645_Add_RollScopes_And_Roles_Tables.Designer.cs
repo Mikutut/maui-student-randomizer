@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentRandomizer.EntityFrameworkCore;
 
@@ -10,9 +11,11 @@ using StudentRandomizer.EntityFrameworkCore;
 namespace StudentRandomizer.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240225152645_Add_RollScopes_And_Roles_Tables")]
+    partial class Add_RollScopes_And_Roles_Tables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.2");
@@ -127,11 +130,9 @@ namespace StudentRandomizer.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GroupId")
-                        .IsUnique();
+                    b.HasIndex("GroupId");
 
-                    b.HasIndex("SchoolClassId")
-                        .IsUnique();
+                    b.HasIndex("SchoolClassId");
 
                     b.ToTable("RollScope");
                 });
@@ -267,14 +268,12 @@ namespace StudentRandomizer.Migrations
             modelBuilder.Entity("StudentRandomizer.Models.RollScope", b =>
                 {
                     b.HasOne("StudentRandomizer.Models.Group", "Group")
-                        .WithOne("RollScope")
-                        .HasForeignKey("StudentRandomizer.Models.RollScope", "GroupId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany("RollScopes")
+                        .HasForeignKey("GroupId");
 
                     b.HasOne("StudentRandomizer.Models.SchoolClass", "SchoolClass")
-                        .WithOne("RollScope")
-                        .HasForeignKey("StudentRandomizer.Models.RollScope", "SchoolClassId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany("RollScopes")
+                        .HasForeignKey("SchoolClassId");
 
                     b.Navigation("Group");
 
@@ -302,8 +301,7 @@ namespace StudentRandomizer.Migrations
 
             modelBuilder.Entity("StudentRandomizer.Models.Group", b =>
                 {
-                    b.Navigation("RollScope")
-                        .IsRequired();
+                    b.Navigation("RollScopes");
 
                     b.Navigation("Students");
                 });
@@ -315,8 +313,7 @@ namespace StudentRandomizer.Migrations
 
             modelBuilder.Entity("StudentRandomizer.Models.SchoolClass", b =>
                 {
-                    b.Navigation("RollScope")
-                        .IsRequired();
+                    b.Navigation("RollScopes");
 
                     b.Navigation("Students");
                 });

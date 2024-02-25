@@ -21,5 +21,7 @@ namespace StudentRandomizer.Models
 		}
 		public SchoolClassEntry? Class { get; set; }
 		public List<GroupEntry> Groups { get; set; } = new List<GroupEntry>();
+		public DateTime CreationDate { get; set; } = DateTime.UtcNow;
+		public DateTime? ModificationDate { get; set; }
 	}
 }

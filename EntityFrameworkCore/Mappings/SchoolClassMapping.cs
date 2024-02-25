@@ -26,18 +26,23 @@ namespace StudentRandomizer.EntityFrameworkCore.Mappings
 				.IsRequired();
 
 			builder.Property(x => x.SchoolClassRefId)
-				.IsRequired()
-				.HasDefaultValue(Guid.NewGuid());
+				.IsRequired();
 
 			builder.Property(x => x.Name)
 				.IsRequired();
 
 			builder.Property(x => x.CreationDate)
 				.IsRequired()
-				.HasDefaultValue(DateTime.UtcNow);
+				.HasDefaultValueSql("current_timestamp");
 
 			builder.Property(x => x.ModificationDate)
 				.IsRequired(false);
+
+			builder.HasOne(x => x.RollScope)
+				.WithOne(y => y.SchoolClass)
+				.HasForeignKey<RollScope>(y => y.SchoolClassId)
+				.IsRequired(false)
+				.OnDelete(DeleteBehavior.Cascade);
 		}
 	}
 }

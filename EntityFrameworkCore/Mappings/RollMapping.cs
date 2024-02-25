@@ -9,34 +9,31 @@ using System.Threading.Tasks;
 
 namespace StudentRandomizer.EntityFrameworkCore.Mappings
 {
-	public class StudentMapping : IEntityTypeConfiguration<Student>
+	public class RollMapping : IEntityTypeConfiguration<Roll>
 	{
-		string TableName = "Students";
+		public const string TableName = "Rolls";
 
-		public void Configure(EntityTypeBuilder<Student> builder)
+		public void Configure(EntityTypeBuilder<Roll> builder)
 		{
 			builder.ToTable(TableName);
 
 			builder.HasKey(x => x.Id);
 
-			builder.HasIndex(x => x.StudentRefId)
+			builder.HasIndex(x => x.RollRefId)
 				.IsUnique();
 
-			builder.Property(x => x.StudentRefId)
+			builder.Property(x => x.RollRefId)
 				.IsRequired();
 
-			builder.Property(x => x.FirstName)
+			builder.Property(x => x.IndexNumber)
 				.IsRequired();
 
-			builder.Property(x => x.LastName)
+			builder.Property(x => x.Value)
 				.IsRequired();
 
 			builder.Property(x => x.CreationDate)
 				.HasDefaultValueSql("current_timestamp")
 				.IsRequired();
-
-			builder.Property(x => x.ModificationDate)
-				.IsRequired(false);
 		}
 	}
 }

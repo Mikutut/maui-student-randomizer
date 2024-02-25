@@ -14,5 +14,6 @@ namespace StudentRandomizer.Models
 		public DateTime CreationDate { get; set; } = DateTime.UtcNow;
 		public DateTime? ModificationDate { get; set; }
 		public List<SchoolClassEntry> Students { get; set; } = new List<SchoolClassEntry>();
+		public RollScope RollScope { get; set; }
 	}
 }

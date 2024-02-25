@@ -34,7 +34,7 @@ namespace StudentRandomizer.EntityFrameworkCore.Mappings
 
 			builder.Property(x => x.CreationDate)
 				.IsRequired()
-				.HasDefaultValue(DateTime.UtcNow);
+				.HasDefaultValueSql("current_timestamp");
 
 			builder.HasIndex(x => x.OrderNumber)
 				.IsUnique();

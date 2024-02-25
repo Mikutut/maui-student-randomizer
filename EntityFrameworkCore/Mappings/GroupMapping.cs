@@ -23,15 +23,14 @@ namespace StudentRandomizer.EntityFrameworkCore.Mappings
 				.IsUnique();
 
 			builder.Property(x => x.GroupRefId)
-				.IsRequired()
-				.HasDefaultValue(Guid.NewGuid());
+				.IsRequired();
 
 			builder.Property(x => x.Name)
 				.IsRequired();
 
 			builder.Property(x => x.CreationDate)
 				.IsRequired()
-				.HasDefaultValue(DateTime.UtcNow);
+				.HasDefaultValueSql("current_timestamp");
 
 			builder.Property(x => x.ModificationDate)
 				.IsRequired(false);
@@ -39,6 +38,12 @@ namespace StudentRandomizer.EntityFrameworkCore.Mappings
 			builder.HasMany(x => x.Students)
 				.WithOne(y => y.Group)
 				.HasForeignKey(y => y.GroupId);
+
+			builder.HasOne(x => x.RollScope)
+				.WithOne(y => y.Group)
+				.HasForeignKey<RollScope>(y => y.GroupId)
+				.IsRequired(false)
+				.OnDelete(DeleteBehavior.Cascade);
 		}
 	}
 }

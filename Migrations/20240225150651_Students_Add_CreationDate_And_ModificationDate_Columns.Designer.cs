@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentRandomizer.EntityFrameworkCore;
 
@@ -10,9 +11,11 @@ using StudentRandomizer.EntityFrameworkCore;
 namespace StudentRandomizer.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240225150651_Students_Add_CreationDate_And_ModificationDate_Columns")]
+    partial class Students_Add_CreationDate_And_ModificationDate_Columns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.2");
@@ -26,10 +29,12 @@ namespace StudentRandomizer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
-                        .HasDefaultValueSql("current_timestamp");
+                        .HasDefaultValue(new DateTime(2024, 2, 25, 15, 6, 50, 328, DateTimeKind.Utc).AddTicks(636));
 
                     b.Property<Guid>("GroupRefId")
-                        .HasColumnType("TEXT");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue(new Guid("51220e17-bc88-4166-b89d-678ae3d7232d"));
 
                     b.Property<DateTime?>("ModificationDate")
                         .HasColumnType("TEXT");
@@ -55,7 +60,7 @@ namespace StudentRandomizer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
-                        .HasDefaultValueSql("current_timestamp");
+                        .HasDefaultValue(new DateTime(2024, 2, 25, 15, 6, 50, 329, DateTimeKind.Utc).AddTicks(3922));
 
                     b.Property<long>("GroupId")
                         .HasColumnType("INTEGER");
@@ -79,63 +84,6 @@ namespace StudentRandomizer.Migrations
                     b.ToTable("GroupEntries", (string)null);
                 });
 
-            modelBuilder.Entity("StudentRandomizer.Models.Roll", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<long>("IndexNumber")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<Guid>("RollRefId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<long>("RollScopeId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long>("Value")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RollScopeId");
-
-                    b.ToTable("Roll");
-                });
-
-            modelBuilder.Entity("StudentRandomizer.Models.RollScope", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<long?>("GroupId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<Guid>("RollScopeRefId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<long?>("SchoolClassId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GroupId")
-                        .IsUnique();
-
-                    b.HasIndex("SchoolClassId")
-                        .IsUnique();
-
-                    b.ToTable("RollScope");
-                });
-
             modelBuilder.Entity("StudentRandomizer.Models.SchoolClass", b =>
                 {
                     b.Property<long>("Id")
@@ -145,7 +93,7 @@ namespace StudentRandomizer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
-                        .HasDefaultValueSql("current_timestamp");
+                        .HasDefaultValue(new DateTime(2024, 2, 25, 15, 6, 50, 327, DateTimeKind.Utc).AddTicks(8710));
 
                     b.Property<DateTime?>("ModificationDate")
                         .HasColumnType("TEXT");
@@ -155,7 +103,9 @@ namespace StudentRandomizer.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("SchoolClassRefId")
-                        .HasColumnType("TEXT");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue(new Guid("e8b48984-c518-4c32-93c0-59c01adb00b2"));
 
                     b.HasKey("Id");
 
@@ -174,7 +124,7 @@ namespace StudentRandomizer.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
-                        .HasDefaultValueSql("current_timestamp");
+                        .HasDefaultValue(new DateTime(2024, 2, 25, 15, 6, 50, 328, DateTimeKind.Utc).AddTicks(8965));
 
                     b.Property<uint>("OrderNumber")
                         .HasColumnType("INTEGER");
@@ -224,7 +174,9 @@ namespace StudentRandomizer.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("StudentRefId")
-                        .HasColumnType("TEXT");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue(new Guid("6bb33023-0150-4d42-b5bb-5e9384503918"));
 
                     b.HasKey("Id");
 
@@ -253,34 +205,6 @@ namespace StudentRandomizer.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("StudentRandomizer.Models.Roll", b =>
-                {
-                    b.HasOne("StudentRandomizer.Models.RollScope", "Scope")
-                        .WithMany("Rolls")
-                        .HasForeignKey("RollScopeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Scope");
-                });
-
-            modelBuilder.Entity("StudentRandomizer.Models.RollScope", b =>
-                {
-                    b.HasOne("StudentRandomizer.Models.Group", "Group")
-                        .WithOne("RollScope")
-                        .HasForeignKey("StudentRandomizer.Models.RollScope", "GroupId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("StudentRandomizer.Models.SchoolClass", "SchoolClass")
-                        .WithOne("RollScope")
-                        .HasForeignKey("StudentRandomizer.Models.RollScope", "SchoolClassId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.Navigation("Group");
-
-                    b.Navigation("SchoolClass");
-                });
-
             modelBuilder.Entity("StudentRandomizer.Models.SchoolClassEntry", b =>
                 {
                     b.HasOne("StudentRandomizer.Models.SchoolClass", "SchoolClass")
@@ -302,22 +226,11 @@ namespace StudentRandomizer.Migrations
 
             modelBuilder.Entity("StudentRandomizer.Models.Group", b =>
                 {
-                    b.Navigation("RollScope")
-                        .IsRequired();
-
                     b.Navigation("Students");
-                });
-
-            modelBuilder.Entity("StudentRandomizer.Models.RollScope", b =>
-                {
-                    b.Navigation("Rolls");
                 });
 
             modelBuilder.Entity("StudentRandomizer.Models.SchoolClass", b =>
                 {
-                    b.Navigation("RollScope")
-                        .IsRequired();
-
                     b.Navigation("Students");
                 });
 
