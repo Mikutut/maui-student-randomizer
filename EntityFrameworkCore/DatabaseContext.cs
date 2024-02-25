@@ -13,8 +13,13 @@ namespace StudentRandomizer.EntityFrameworkCore
 	public class DatabaseContext : DbContext
 	{
 		public DbSet<SchoolClass> SchoolClasses { get; set; } = null!;
+		public DbSet<SchoolClassEntry> SchoolClassEntries { get; set; } = null!;
 		public DbSet<Student> Students { get; set; } = null!;
 		public DbSet<Group> Groups { get; set; } = null!;
+		public DbSet<GroupEntry> GroupEntries { get; set; } = null!;
+		public DbSet<RollScope> RollScopes { get; set; } = null!;
+		public DbSet<CurrentRoll> Rolls { get; set; } = null!;
+		public DbSet<ArchivalRoll> ArchivalRolls { get; set; } = null!;
 
 		public DatabaseContext()
 			: base()
@@ -49,7 +54,10 @@ namespace StudentRandomizer.EntityFrameworkCore
 				.ApplyConfiguration<Group>(new GroupMapping())
 				.ApplyConfiguration<Student>(new StudentMapping())
 				.ApplyConfiguration<SchoolClassEntry>(new SchoolClassEntryMapping())
-				.ApplyConfiguration<GroupEntry>(new GroupEntryMapping());
+				.ApplyConfiguration<GroupEntry>(new GroupEntryMapping())
+				.ApplyConfiguration<RollScope>(new RollScopeMapping())
+				.ApplyConfiguration<CurrentRoll>(new CurrentRollMapping())
+				.ApplyConfiguration<ArchivalRoll>(new ArchivalRollMapping());
 		}
 	}
 }

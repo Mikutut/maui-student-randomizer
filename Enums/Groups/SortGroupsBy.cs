@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentRandomizer.Enums.SchoolClasses
+namespace StudentRandomizer.Enums.Groups
 {
-	public enum SortSchoolClassesBy
+	public enum SortGroupsBy
 	{
 		Name
 	}

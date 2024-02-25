@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using StudentRandomizer.Enums.SchoolClasses;
+using StudentRandomizer.Enums.Groups;
 using StudentRandomizer.Enums.Sorting;
+using StudentRandomizer.Interfaces;
 using StudentRandomizer.Models;
 using StudentRandomizer.Services.Common;
 using StudentRandomizer.Services.Groups;
@@ -13,9 +14,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentRandomizer.Services.SchoolClasses
+namespace StudentRandomizer.Services.Groups
 {
-	public class GroupDataService : IGroupDataService
+    public class GroupDataService : IGroupDataService
 	{
 		private readonly IRepository<Group> _groupRepository;
 		private readonly IStudentDataService _studentDataService;
@@ -116,6 +117,11 @@ namespace StudentRandomizer.Services.SchoolClasses
 			_groupRepository.SaveChanges();
 
 			return group;
+		}
+
+		public ICollection<IRoll> GetRolls(Guid rollScopeOwnerRefId)
+		{
+			throw new NotImplementedException();
 		}
 
 		private IQueryable<Group> GetBaseGroupsQuery()

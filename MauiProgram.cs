@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using StudentRandomizer.EntityFrameworkCore;
+using StudentRandomizer.Interfaces;
 using StudentRandomizer.Models;
 using StudentRandomizer.Services.Common;
 using StudentRandomizer.Services.Groups;
@@ -57,7 +58,7 @@ public static class MauiProgram
 			.AddScoped<IRepository<Group>, EfRepository<Group>>()
 			.AddScoped<IRepository<GroupEntry>, EfRepository<GroupEntry>>()
 			.AddScoped<IRepository<RollScope>, EfRepository<RollScope>>()
-			.AddScoped<IRepository<Roll>, EfRepository<Roll>>();
+			.AddScoped<IRepository<IRoll>, EfRepository<IRoll>>();
 
 		return builder;
 	}
@@ -67,7 +68,9 @@ public static class MauiProgram
 		builder.Services
 			.AddScoped<IStudentDataService, StudentDataService>()
 			.AddScoped<ISchoolClassDataService, SchoolClassDataService>()
-			.AddScoped<IGroupDataService, GroupDataService>();
+			.AddScoped<IGroupDataService, GroupDataService>()
+			.AddScoped<IRollManagementService<SchoolClass>, SchoolClassRollManagementService>()
+			.AddScoped<IRollManagementService<Group>, GroupRollManagementService>();
 
 		return builder;
 	}

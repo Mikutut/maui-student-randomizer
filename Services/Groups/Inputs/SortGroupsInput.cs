@@ -1,4 +1,4 @@
-﻿using StudentRandomizer.Enums.SchoolClasses;
+﻿using StudentRandomizer.Enums.Groups;
 using StudentRandomizer.Enums.Sorting;
 using System;
 using System.Collections.Generic;
