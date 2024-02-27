@@ -7,6 +7,7 @@ using StudentRandomizer.Models;
 using StudentRandomizer.Pages;
 using StudentRandomizer.Services.Common;
 using StudentRandomizer.Services.Groups;
+using StudentRandomizer.Services.LuckyNumbers;
 using StudentRandomizer.Services.SchoolClasses;
 using StudentRandomizer.Services.Students;
 
@@ -63,6 +64,7 @@ public static class MauiProgram
 			.AddSingleton<SchoolClassFormPage>()
 			.AddSingleton<SchoolClassAddStudentPage>()
 			.AddSingleton<NewRollPage>()
+			.AddSingleton<LuckyNumberPage>()
 			.AddSingleton<MainPage>();
 
 		return builder;
@@ -77,7 +79,8 @@ public static class MauiProgram
 			.AddTransient<IRepository<Group>, EfRepository<Group>>()
 			.AddTransient<IRepository<Models.GroupEntry>, EfRepository<Models.GroupEntry>>()
 			.AddTransient<IRepository<RollScope>, EfRepository<RollScope>>()
-			.AddTransient<IRepository<IRoll>, EfRepository<IRoll>>();
+			.AddTransient<IRepository<IRoll>, EfRepository<IRoll>>()
+			.AddTransient<IRepository<LuckyNumber>, EfRepository<LuckyNumber>>();
 
 		return builder;
 	}
@@ -89,7 +92,8 @@ public static class MauiProgram
 			.AddTransient<ISchoolClassDataService, SchoolClassDataService>()
 			.AddTransient<IGroupDataService, GroupDataService>()
 			.AddTransient<IRollManagementService<SchoolClass>, SchoolClassRollManagementService>()
-			.AddTransient<IRollManagementService<Group>, GroupRollManagementService>();
+			.AddTransient<IRollManagementService<Group>, GroupRollManagementService>()
+			.AddTransient<ILuckyNumberDataService, LuckyNumberDataService>();
 
 		return builder;
 	}

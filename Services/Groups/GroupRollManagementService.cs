@@ -1,6 +1,7 @@
 ﻿using StudentRandomizer.Interfaces;
 using StudentRandomizer.Models;
 using StudentRandomizer.Services.Common;
+using StudentRandomizer.Services.LuckyNumbers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,15 @@ namespace StudentRandomizer.Services.Groups
     public class GroupRollManagementService : IRollManagementService<Group>
 	{
 		private readonly IGroupDataService _groupDataService;
+		private readonly ILuckyNumberDataService _luckyNumberDataService;
 		private readonly IRepository<RollScope> _rollScopeRepository;
 
 		public GroupRollManagementService(IGroupDataService groupDataService,
+										  ILuckyNumberDataService luckyNumberDataService,
 										  IRepository<RollScope> rollScopeRepository)
 		{
 			_groupDataService = groupDataService;
+			_luckyNumberDataService = luckyNumberDataService;
 			_rollScopeRepository = rollScopeRepository;
 		}
 
@@ -74,6 +78,7 @@ namespace StudentRandomizer.Services.Groups
 		{
 			var group = _groupDataService.Get(rollScopeOwnerRefId);
 			var rollScope = group.RollScope;
+			var luckyNumber = _luckyNumberDataService.GetOrCreate(DateTime.UtcNow);
 
 			var rollBoundaries = GetRollBoundaries(group);
 
@@ -95,6 +100,7 @@ namespace StudentRandomizer.Services.Groups
 				.Select(x => x.Value)
 				.ToList()
 				.Contains(newRollValue)
+				|| newRollValue == luckyNumber.Value
 			);
 
 			CurrentRoll newRoll = new CurrentRoll()

@@ -21,5 +21,10 @@ public partial class MainPage : ContentPage
 	{
 		await Shell.Current.GoToAsync("//groups/list");
 	}
+
+	private async void mainPage_luckyNumberButton_Clicked(object obj)
+	{
+		await Shell.Current.GoToAsync("//luckynumber");
+	}
 }
 

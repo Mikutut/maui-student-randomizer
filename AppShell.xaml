@@ -59,5 +59,9 @@
     Title="Nowe losowanie"
     ContentTemplate="{DataTemplate pages:NewRollPage}"
     Route="newroll" />
+  <ShellContent
+    Title="Szczęśliwy numerek"
+    ContentTemplate="{DataTemplate pages:LuckyNumberPage}"
+    Route="luckynumber" />
 
 </Shell>

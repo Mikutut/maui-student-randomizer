@@ -33,6 +33,7 @@
         <ColumnDefinition Width="*" />
         <ColumnDefinition Width="*" />
         <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
       </Grid.ColumnDefinitions>
       <components:ImageTextButton 
         x:Name="mainPage_studentsListButton"
@@ -40,8 +41,8 @@
         Grid.Column="0"
         Image="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
         Text="Lista uczniów"
-        HeightRequest="250"
-        WidthRequest="250"
+        HeightRequest="200"
+        WidthRequest="200"
         HorizontalOptions="Center"
         VerticalOptions="Center"
         Clicked="mainPage_studentsListButton_Clicked" />
@@ -51,8 +52,8 @@
         Grid.Column="1"
         Text="Lista klas"
         Image="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
-        HeightRequest="250"
-        WidthRequest="250"
+        HeightRequest="200"
+        WidthRequest="200"
         HorizontalOptions="Center"
         VerticalOptions="Center"
         Clicked="mainPage_schoolClassesListButton_Clicked" />
@@ -62,11 +63,22 @@
         Grid.Column="2"
         Text="Lista grup"
         Image="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
-        HeightRequest="250"
-        WidthRequest="250"
+        HeightRequest="200"
+        WidthRequest="200"
         HorizontalOptions="Center"
         VerticalOptions="Center"
         Clicked="mainPage_groupsListButton_Clicked" />
+      <components:ImageTextButton 
+        x:Name="mainPage_luckyNumberButton"
+        Grid.Row="0"
+        Grid.Column="3"
+        Text="Szczęśliwy numerek"
+        Image="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
+        HeightRequest="200"
+        WidthRequest="200"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        Clicked="mainPage_luckyNumberButton_Clicked" />
     </Grid>
   </Grid>
 </ContentPage>

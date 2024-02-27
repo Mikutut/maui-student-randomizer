@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudentRandomizer.Pages.LuckyNumberPage"
+             Title="Szczęśliwy numerek">
+  <ContentPage.ToolbarItems>
+    <ToolbarItem
+      x:Name="luckyNumberPage_homeToolbarItem"
+      Text="Strona główna"
+      IconImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
+      Clicked="luckyNumberPage_homeToolbarItem_Clicked" />
+  </ContentPage.ToolbarItems>
+  <Grid
+    x:Name="luckyNumberPage_mainGrid"
+    RowDefinitions="*, *"
+    ColumnDefinitions="*">
+    <Label
+      x:Name="luckyNumberPage_titleLabel"
+      Grid.Row="0"
+      Grid.Column="0"
+      Text="Dzisiejszy szczęśliwy numerek"
+      VerticalOptions="Center"
+      HorizontalOptions="Center"
+      VerticalTextAlignment="Center"
+      HorizontalTextAlignment="Center"/>
+    <Label
+      x:Name="luckyNumberPage_numberLabel"
+      Grid.Row="1"
+      Grid.Column="0"
+      Text="{Binding Value}"
+      FontSize="Large"
+      VerticalOptions="Center"
+      HorizontalOptions="Center"
+      VerticalTextAlignment="Center"
+      HorizontalTextAlignment="Center"/>
+  </Grid>
+</ContentPage>
