@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using StudentRandomizer.Components;
 using StudentRandomizer.EntityFrameworkCore;
 using StudentRandomizer.Interfaces;
 using StudentRandomizer.Models;
+using StudentRandomizer.Pages;
 using StudentRandomizer.Services.Common;
 using StudentRandomizer.Services.Groups;
 using StudentRandomizer.Services.SchoolClasses;
@@ -24,7 +26,11 @@ public static class MauiProgram
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			});
+				fonts.AddFont("Font Awesome 6 Brands-Regular-400.otf", "FontAwesomeBrands");
+				fonts.AddFont("Font Awesome 6 Free-Regular-400.otf", "FontAwesome");
+				fonts.AddFont("Font Awesome 6 Free-Solid-900.otf", "FontAwesomeSolid");
+			})
+			.ConfigurePages();
 
 #if DEBUG
 		builder.Logging.AddDebug();
@@ -38,13 +44,22 @@ public static class MauiProgram
 		builder.Services
 			.AddDbContext<DatabaseContext>(opts =>
 			{
-				if(!Directory.Exists(AppConsts.AppDataPath))
-				{
-					Directory.CreateDirectory(AppConsts.AppDataPath);
-				}
-
-				opts.UseSqlite($"Data Source={AppConsts.DbPath}");
+				DatabaseContext.ConfigureDatabase(opts);
 			});
+
+		return builder;
+	}
+
+	public static MauiAppBuilder ConfigurePages(this MauiAppBuilder builder)
+	{
+		builder.Services
+			.AddSingleton<AppShell>()
+			.AddSingleton<StudentsListPage>()
+			.AddSingleton<StudentFormPage>()
+			.AddSingleton<GroupsListPage>()
+			.AddSingleton<GroupFormPage>()
+			.AddSingleton<GroupAddStudentPage>()
+			.AddSingleton<MainPage>();
 
 		return builder;
 	}
@@ -52,13 +67,13 @@ public static class MauiProgram
 	public static MauiAppBuilder ConfigureRepositories(this MauiAppBuilder builder)
 	{
 		builder.Services
-			.AddScoped<IRepository<Student>, EfRepository<Student>>()
-			.AddScoped<IRepository<SchoolClass>, EfRepository<SchoolClass>>()
-			.AddScoped<IRepository<SchoolClassEntry>, EfRepository<SchoolClassEntry>>()
-			.AddScoped<IRepository<Group>, EfRepository<Group>>()
-			.AddScoped<IRepository<GroupEntry>, EfRepository<GroupEntry>>()
-			.AddScoped<IRepository<RollScope>, EfRepository<RollScope>>()
-			.AddScoped<IRepository<IRoll>, EfRepository<IRoll>>();
+			.AddTransient<IRepository<Student>, EfRepository<Student>>()
+			.AddTransient<IRepository<SchoolClass>, EfRepository<SchoolClass>>()
+			.AddTransient<IRepository<Models.SchoolClassEntry>, EfRepository<Models.SchoolClassEntry>>()
+			.AddTransient<IRepository<Group>, EfRepository<Group>>()
+			.AddTransient<IRepository<Models.GroupEntry>, EfRepository<Models.GroupEntry>>()
+			.AddTransient<IRepository<RollScope>, EfRepository<RollScope>>()
+			.AddTransient<IRepository<IRoll>, EfRepository<IRoll>>();
 
 		return builder;
 	}
@@ -66,11 +81,11 @@ public static class MauiProgram
 	public static MauiAppBuilder ConfigureServices(this MauiAppBuilder builder)
 	{
 		builder.Services
-			.AddScoped<IStudentDataService, StudentDataService>()
-			.AddScoped<ISchoolClassDataService, SchoolClassDataService>()
-			.AddScoped<IGroupDataService, GroupDataService>()
-			.AddScoped<IRollManagementService<SchoolClass>, SchoolClassRollManagementService>()
-			.AddScoped<IRollManagementService<Group>, GroupRollManagementService>();
+			.AddTransient<IStudentDataService, StudentDataService>()
+			.AddTransient<ISchoolClassDataService, SchoolClassDataService>()
+			.AddTransient<IGroupDataService, GroupDataService>()
+			.AddTransient<IRollManagementService<SchoolClass>, SchoolClassRollManagementService>()
+			.AddTransient<IRollManagementService<Group>, GroupRollManagementService>();
 
 		return builder;
 	}

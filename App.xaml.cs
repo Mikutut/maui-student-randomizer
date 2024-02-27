@@ -7,13 +7,13 @@ public partial class App : Application
 {
 	private readonly DatabaseContext _context;
 
-	public App(DatabaseContext context)
+	public App(IServiceProvider serviceProvider)
 	{
-		_context = context;
+		_context = serviceProvider.GetRequiredService<DatabaseContext>();
 
 		InitializeComponent();
 
-		MainPage = new AppShell();
+		MainPage = serviceProvider.GetRequiredService<AppShell>();
 	}
 
 	protected override Window CreateWindow(IActivationState activationState)

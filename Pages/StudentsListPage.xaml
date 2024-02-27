@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:StudentRandomizer.Components"
+             x:Class="StudentRandomizer.Pages.StudentsListPage"
+             x:Name="studentsListPage"
+             Title="Lista uczniów">
+  <ContentPage.ToolbarItems>
+    <ToolbarItem
+      x:Name="studentsListPage_homeToolbarItem"
+      Text="Strona główna"
+      IconImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
+      Clicked="studentsListPage_homeToolbarItem_Clicked" />
+    <ToolbarItem
+      x:Name="studentsListPage_createToolbarItem"
+      Text="Dodaj ucznia"
+      IconImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=+}"
+      Clicked="studentsListPage_createToolbarItem_Clicked" />
+  </ContentPage.ToolbarItems>
+  <Grid
+    x:Name="studentsListPage_mainGrid">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <CollectionView
+      x:Name="studentsListPage_collectionView"
+      Grid.Row="0"
+      Grid.Column="0"
+      HorizontalOptions="Fill"
+      VerticalOptions="Fill"
+      ItemsSource="{Binding Students}"
+      ItemsLayout="VerticalList">
+      <CollectionView.EmptyView>
+        <Grid
+          RowDefinitions="*"
+          ColumnDefinitions="*"
+          VerticalOptions="Fill"
+          HorizontalOptions="Fill">
+          <components:EmptyCollectionView
+            Grid.Row="0"
+            Grid.Column="0"
+            VerticalOptions="Fill"
+            HorizontalOptions="Fill" />
+        </Grid>
+      </CollectionView.EmptyView>
+      <CollectionView.ItemTemplate>
+        <DataTemplate>
+          <components:StudentEntry 
+            Student="{Binding .}"
+            Margin="0,10,0,10"
+            OnDelete="StudentEntry_OnDelete"
+            OnUpdate="StudentEntry_OnUpdate" />
+        </DataTemplate>
+      </CollectionView.ItemTemplate>
+    </CollectionView>
+  </Grid>
+</ContentPage>

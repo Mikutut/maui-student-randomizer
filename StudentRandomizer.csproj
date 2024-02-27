@@ -73,4 +73,52 @@
 	  <Folder Include="Events\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="Components\SchoolClassEntry.xaml.cs">
+	    <DependentUpon>SchoolClassEntry.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Components\GroupEntry.xaml.cs">
+	    <DependentUpon>GroupEntry.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\GroupsListPage.xaml.cs">
+	    <DependentUpon>GroupsListPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\GroupFormPage.xaml.cs">
+	    <DependentUpon>GroupFormPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Components\EmptyCollectionView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\SchoolClassEntry.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\ImageTextButton.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\GroupEntry.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\StudentEntry.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\GroupAddStudentPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\GroupFormPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\StudentFormPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\GroupsListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\StudentsListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>

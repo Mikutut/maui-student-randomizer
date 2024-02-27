@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:StudentRandomizer.Components"
+             x:Class="StudentRandomizer.Pages.GroupsListPage"
+             x:Name="groupsListPage"
+             Title="Lista grup">
+  <ContentPage.ToolbarItems>
+    <ToolbarItem
+      x:Name="groupsListPage_homeToolbarItem"
+      Text="Strona główna"
+      IconImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
+      Clicked="groupsListPage_homeToolbarItem_Clicked" />
+    <ToolbarItem
+      x:Name="groupsListPage_createToolbarItem"
+      Text="Dodaj grupę"
+      IconImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=+}"
+      Clicked="groupsListPage_createToolbarItem_Clicked" />
+  </ContentPage.ToolbarItems>
+  <Grid
+    x:Name="groupsListPage_mainGrid">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <CollectionView
+      x:Name="groupsListPage_collectionView"
+      Grid.Row="0"
+      Grid.Column="0"
+      HorizontalOptions="Fill"
+      VerticalOptions="Fill"
+      ItemsSource="{Binding Groups}"
+      ItemsLayout="VerticalList">
+      <CollectionView.EmptyView>
+        <Grid
+          RowDefinitions="*"
+          ColumnDefinitions="*"
+          VerticalOptions="Fill"
+          HorizontalOptions="Fill">
+          <components:EmptyCollectionView
+            Grid.Row="0"
+            Grid.Column="0"
+            VerticalOptions="Fill"
+            HorizontalOptions="Fill" />
+        </Grid>
+      </CollectionView.EmptyView>
+      <CollectionView.ItemTemplate>
+        <DataTemplate>
+          <components:GroupEntry 
+            Group="{Binding .}"
+            Margin="0,10,0,10"
+            OnDelete="GroupEntry_OnDelete"
+            OnUpdate="GroupEntry_OnUpdate"
+            OnAddStudent="GroupEntry_OnAddStudent"/>
+        </DataTemplate>
+      </CollectionView.ItemTemplate>
+    </CollectionView>
+  </Grid>
+</ContentPage>

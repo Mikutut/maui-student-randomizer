@@ -36,9 +36,6 @@ namespace StudentRandomizer.EntityFrameworkCore.Mappings
 				.IsRequired()
 				.HasDefaultValueSql("current_timestamp");
 
-			builder.HasIndex(x => x.OrderNumber)
-				.IsUnique();
-
 			builder.HasIndex(x => new { x.StudentId, x.SchoolClassId })
 				.IsUnique();
 		}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudentRandomizer.Components.EmptyCollectionView"
+             x:Name="emptyCollectionView">
+  <Grid
+    RowDefinitions="*, *"
+    ColumnDefinitions="*"
+    HorizontalOptions="Center"
+    VerticalOptions="Center"
+    RowSpacing="30">
+    <Image
+      Grid.Row="0"
+      Grid.Column="0"
+      x:Name="emptyCollectionView_Image"
+      Source="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=*, Size=50}"
+      Aspect="Center"
+      HorizontalOptions="Center"
+      VerticalOptions="Center"/>
+    <Label 
+      Grid.Row="1"
+      Grid.Column="0"
+      x:Name="emptyCollectionView_Label"
+      Text="Brak danych"
+      FontSize="32"
+      VerticalOptions="Center" 
+      HorizontalOptions="Center"
+      HorizontalTextAlignment="Center"
+      VerticalTextAlignment="Center" />
+  </Grid>
+</ContentView>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudentRandomizer.Pages.GroupAddStudentPage"
+             Title="Dodawanie ucznia"
+             x:Name="groupAddStudentPage">
+  <Grid
+    x:Name="groupAddStudentPage_mainGrid"
+    RowDefinitions="*, *"
+    ColumnDefinitions="*, *">
+    <Label
+      x:Name="groupAddStudentPage_studentLabel"
+      Grid.Row="0"
+      Grid.Column="0"
+      Text="Uczeń"
+      VerticalOptions="Center"
+      HorizontalOptions="Center"
+      HorizontalTextAlignment="Center"
+      VerticalTextAlignment="Center"
+      />
+    <Picker
+      x:Name="groupAddStudentPage_studentPicker"
+      Grid.Row="0"
+      Grid.Column="1"
+      VerticalOptions="Center"
+      HorizontalOptions="Center"
+      ItemDisplayBinding="{Binding FullName}"
+      SelectedIndexChanged="groupAddStudentPage_studentPicker_SelectedIndexChanged"/>
+    <Grid
+      Grid.Row="1"
+      Grid.Column="0"
+      Grid.ColumnSpan="2"
+      x:Name="groupAddStudentPage_buttonsGrid"
+      RowDefinitions="*"
+      ColumnDefinitions="*, *">
+      <Button
+        x:Name="groupAddStudentPage_cancelButton"
+        Grid.Row="0"
+        Grid.Column="0"
+        Text="Anuluj"
+        Clicked="groupAddStudentPage_cancelButton_Clicked"
+        VerticalOptions="Center"
+        HorizontalOptions="Center" />
+      <Button
+        x:Name="groupAddStudentPage_submitButton"
+        Grid.Row="0"
+        Grid.Column="1"
+        Text="Zatwierdź"
+        Clicked="groupAddStudentPage_submitButton_Clicked"
+        VerticalOptions="Center"
+        HorizontalOptions="Center" />
+    </Grid>
+  </Grid>
+</ContentPage>

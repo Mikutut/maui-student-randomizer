@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudentRandomizer.Components.SchoolClassEntry"
+             x:Name="schoolClassEntry">
+  <Grid
+    x:Name="schoolClassEntry_mainGrid"
+    BindingContext="{x:Reference schoolClassEntry}"
+    RowDefinitions="*"
+    ColumnDefinitions="*, *, *"
+    ColumnSpacing="10"
+    HorizontalOptions="Fill"
+    VerticalOptions="Fill">
+    <Label
+      x:Name="schoolClassEntry_nameLabel"
+      Grid.Row="0"
+      Grid.Column="0"
+      BindingContext="{Binding Group}"
+      Text="{Binding Name}"
+      HorizontalOptions="Center"
+      VerticalOptions="Center"
+      HorizontalTextAlignment="Center"
+      VerticalTextAlignment="Center" />
+    <Label
+      x:Name="schoolClassEntry_studentsCountLabel"
+      Grid.Row="0"
+      Grid.Column="1"
+      Text="{Binding StudentsCount}"
+      HorizontalOptions="Center"
+      VerticalOptions="Center"
+      HorizontalTextAlignment="Center"
+      VerticalTextAlignment="Center" />
+    <Grid
+      x:Name="schoolClassEntry_buttonsGrid"
+      Grid.Row="0"
+      Grid.Column="2"
+      RowDefinitions="*"
+      ColumnDefinitions="*"
+      HorizontalOptions="Fill"
+      VerticalOptions="Center">
+      <HorizontalStackLayout
+        x:Name="schoolClassEntry_buttonsStackLayout"
+        Grid.Row="0"
+        Grid.Column="0"
+        Spacing="10"
+        HorizontalOptions="Center"
+        VerticalOptions="Center">
+        <Button
+          x:Name="schoolClassEntry_addStudentButton"
+          ImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=+}"
+          Clicked="schoolClassEntry_addStudentButton_Clicked"
+          VerticalOptions="Center"
+          HorizontalOptions="Center" />
+        <Button
+          x:Name="schoolClassEntry_updateButton"
+          ImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
+          Clicked="schoolClassEntry_updateButton_Clicked"
+          VerticalOptions="Center"
+          HorizontalOptions="Center" />
+        <Button
+          x:Name="schoolClassEntry_deleteButton"
+          ImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
+          Clicked="schoolClassEntry_deleteButton_Clicked"
+          VerticalOptions="Center"
+          HorizontalOptions="Center" />
+      </HorizontalStackLayout>
+    </Grid>
+  </Grid>
+</ContentView>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudentRandomizer.Pages.StudentFormPage"
+             Title="Formularz ucznia"
+             x:Name="studentFormPage">
+  <Grid
+    x:Name="studentFormPage_mainGrid"
+    RowDefinitions="*, *, *"
+    ColumnDefinitions="*, *"
+    RowSpacing="10"
+  >
+    <Label
+      x:Name="studentFormPage_firstNameLabel"
+      Grid.Row="0"
+      Grid.Column="0"
+      Text="Imię" />
+    <Entry
+      x:Name="studentFormPage_firstNameEntry"
+      Grid.Row="0"
+      Grid.Column="1"
+      Text="{Binding FirstName}"
+      VerticalOptions="Center"
+      HorizontalOptions="Fill" />
+    <Label
+      x:Name="studentFormPage_lastNameLabel"
+      Grid.Row="1"
+      Grid.Column="0"
+      Text="Nazwisko" />
+    <Entry
+      x:Name="studentFormPage_lastNameEntry"
+      Grid.Row="1"
+      Grid.Column="1"
+      Text="{Binding LastName}"
+      VerticalOptions="Center"
+      HorizontalOptions="Fill" />
+    <HorizontalStackLayout
+      x:Name="studentFormPage_buttonsStackLayout"
+      Grid.Row="2"
+      Grid.Column="0"
+      Grid.ColumnSpan="2"
+      HorizontalOptions="Fill"
+      VerticalOptions="Center">
+      <Button
+        x:Name="studentFormPage_cancelButton"
+        Text="Anuluj"
+        Clicked="studentFormPage_cancelButton_Clicked"
+        HorizontalOptions="Center"
+        VerticalOptions="Center" />
+      <Button
+        x:Name="studentFormPage_submitButton"
+        Text="Zatwierdź"
+        Clicked="studentFormPage_submitButton_Clicked"
+        HorizontalOptions="Center"
+        VerticalOptions="Center" />
+    </HorizontalStackLayout>
+  </Grid>
+</ContentPage>

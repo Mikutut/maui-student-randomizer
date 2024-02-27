@@ -33,16 +33,21 @@ namespace StudentRandomizer.EntityFrameworkCore
 
 		}
 
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		public static void ConfigureDatabase(DbContextOptionsBuilder optionsBuilder)
 		{
-			base.OnConfiguring(optionsBuilder);
-
 			if(!Directory.Exists(AppConsts.AppDataPath))
 			{
 				Directory.CreateDirectory(AppConsts.AppDataPath);
 			}
 
 			optionsBuilder.UseSqlite($"Data Source={AppConsts.DbPath}");
+		}
+
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		{
+			base.OnConfiguring(optionsBuilder);
+
+			ConfigureDatabase(optionsBuilder);
 		}
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)

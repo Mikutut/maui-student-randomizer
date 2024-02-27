@@ -12,13 +12,8 @@ namespace StudentRandomizer.EntityFrameworkCore
 	{
 		public DatabaseContext CreateDbContext(string[] args)
 		{
-			if(!Directory.Exists(AppConsts.AppDataPath))
-			{
-				Directory.CreateDirectory(AppConsts.AppDataPath);
-			}
-
 			var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
-			optionsBuilder.UseSqlite($"Data Source={AppConsts.DbPath}");
+			DatabaseContext.ConfigureDatabase(optionsBuilder);
 
 			return new DatabaseContext(optionsBuilder.Options);
 		}

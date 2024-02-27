@@ -3,13 +3,41 @@
     x:Class="StudentRandomizer.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:StudentRandomizer"
+    xmlns:pages="clr-namespace:StudentRandomizer.Pages"
     Shell.FlyoutBehavior="Disabled"
     Title="StudentRandomizer">
 
+  <ShellContent
+    Title="Strona główna"
+    ContentTemplate="{DataTemplate pages:MainPage}"
+    Route="home" />
+  <Tab
+    Route="students"
+    Shell.TabBarIsVisible="false">
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+      Title="Lista uczniów"
+      ContentTemplate="{DataTemplate pages:StudentsListPage}"
+      Route="list" />
+    <ShellContent
+      Title="Formularz ucznia"
+      ContentTemplate="{DataTemplate pages:StudentFormPage}"
+      Route="form" />
+  </Tab>
+  <Tab
+    Route="groups"
+    Shell.TabBarIsVisible="false">
+    <ShellContent
+      Title="Lista grup"
+      ContentTemplate="{DataTemplate pages:GroupsListPage}"
+      Route="list" />
+    <ShellContent
+      Title="Formularz grupy"
+      ContentTemplate="{DataTemplate pages:GroupFormPage}"
+      Route="form" />
+    <ShellContent
+      Title="Dodawanie ucznia"
+      ContentTemplate="{DataTemplate pages:GroupAddStudentPage}"
+      Route="addstudent" />
+  </Tab>
 
 </Shell>

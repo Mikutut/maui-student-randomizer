@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudentRandomizer.Pages.GroupFormPage"
+             Title="Formularz grupy"
+             x:Name="groupFormPage">
+  <Grid
+    x:Name="groupFormPage_mainGrid"
+    RowDefinitions="*, *"
+    ColumnDefinitions="*, *"
+    RowSpacing="10"
+  >
+    <Label
+      x:Name="groupFormPage_firstNameLabel"
+      Grid.Row="0"
+      Grid.Column="0"
+      Text="Imię" />
+    <Entry
+      x:Name="groupFormPage_firstNameEntry"
+      Grid.Row="0"
+      Grid.Column="1"
+      Text="{Binding Name}"
+      VerticalOptions="Center"
+      HorizontalOptions="Fill" />
+    <HorizontalStackLayout
+      x:Name="groupFormPage_buttonsStackLayout"
+      Grid.Row="2"
+      Grid.Column="0"
+      Grid.ColumnSpan="2"
+      HorizontalOptions="Fill"
+      VerticalOptions="Center">
+      <Button
+        x:Name="groupFormPage_cancelButton"
+        Text="Anuluj"
+        Clicked="groupFormPage_cancelButton_Clicked"
+        HorizontalOptions="Center"
+        VerticalOptions="Center" />
+      <Button
+        x:Name="groupFormPage_submitButton"
+        Text="Zatwierdź"
+        Clicked="groupFormPage_submitButton_Clicked"
+        HorizontalOptions="Center"
+        VerticalOptions="Center" />
+    </HorizontalStackLayout>
+  </Grid>
+</ContentPage>
