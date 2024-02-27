@@ -88,4 +88,13 @@ public partial class GroupsListPage : ContentPage
 		};
 		await Shell.Current.GoToAsync("//groups/addstudent", queryParams);
 	}
+
+	private async void GroupEntry_OnNewRoll(Group obj)
+	{
+		var queryParams = new Dictionary<string, object>
+		{
+			{ "Group", obj }
+		};
+		await Shell.Current.GoToAsync("//newroll", queryParams);
+    }
 }

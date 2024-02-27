@@ -15,7 +15,7 @@
       x:Name="schoolClassEntry_nameLabel"
       Grid.Row="0"
       Grid.Column="0"
-      BindingContext="{Binding Group}"
+      BindingContext="{Binding SchoolClass}"
       Text="{Binding Name}"
       HorizontalOptions="Center"
       VerticalOptions="Center"
@@ -45,6 +45,12 @@
         Spacing="10"
         HorizontalOptions="Center"
         VerticalOptions="Center">
+        <Button
+          x:Name="schoolClassEntry_rollStudentButton"
+          ImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
+          Clicked="schoolClassEntry_rollStudentButton_Clicked"
+          VerticalOptions="Center"
+          HorizontalOptions="Center" />
         <Button
           x:Name="schoolClassEntry_addStudentButton"
           ImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=+}"

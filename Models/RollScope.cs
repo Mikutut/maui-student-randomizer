@@ -9,7 +9,7 @@ namespace StudentRandomizer.Models
 	public class RollScope
 	{
 		public long Id { get; set; }
-		public Guid RollScopeRefId { get; set; }
+		public Guid RollScopeRefId { get; set; } = Guid.NewGuid();
 		public DateTime CreationDate { get; set; } = DateTime.UtcNow;
 		public long? GroupId { get; set; }
 		public Group? Group { get; set; }

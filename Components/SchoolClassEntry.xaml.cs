@@ -29,7 +29,8 @@ public partial class SchoolClassEntry : ContentView, INotifyPropertyChanged
 
 	public event Action<SchoolClass>? OnDelete;
 	public event Action<SchoolClass>? OnUpdate;
-	public event Action? OnAddStudent;
+	public event Action<SchoolClass>? OnAddStudent;
+	public event Action<SchoolClass>? OnNewRoll;
 
 	public SchoolClassEntry()
 	{
@@ -48,6 +49,11 @@ public partial class SchoolClassEntry : ContentView, INotifyPropertyChanged
 
 	private void schoolClassEntry_addStudentButton_Clicked(object sender, EventArgs e)
 	{
-		OnAddStudent?.Invoke();
+		OnAddStudent?.Invoke(SchoolClass);
 	}
+
+	private void schoolClassEntry_rollStudentButton_Clicked(object sender, EventArgs e)
+	{
+		OnNewRoll?.Invoke(SchoolClass);
+    }
 }

@@ -59,6 +59,10 @@ public static class MauiProgram
 			.AddSingleton<GroupsListPage>()
 			.AddSingleton<GroupFormPage>()
 			.AddSingleton<GroupAddStudentPage>()
+			.AddSingleton<SchoolClassesListPage>()
+			.AddSingleton<SchoolClassFormPage>()
+			.AddSingleton<SchoolClassAddStudentPage>()
+			.AddSingleton<NewRollPage>()
 			.AddSingleton<MainPage>();
 
 		return builder;

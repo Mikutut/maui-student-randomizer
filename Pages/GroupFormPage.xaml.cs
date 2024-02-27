@@ -68,7 +68,7 @@ public partial class GroupFormPage : ContentPage
 		}
 		catch(Exception ex)
 		{
-			await DisplayAlert("Formularz ucznia", $"Operacja nie powiodła się.\n{ex.Message}\n{ex.InnerException?.Message}", "OK");
+			await DisplayAlert("Formularz grupy", $"Operacja nie powiodła się.\n{ex.Message}\n{ex.InnerException?.Message}", "OK");
 		}
 
 		await Shell.Current.GoToAsync("//groups/list");

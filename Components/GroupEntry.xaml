@@ -46,6 +46,12 @@
         HorizontalOptions="Center"
         VerticalOptions="Center">
         <Button
+          x:Name="groupClassEntry_rollStudentButton"
+          ImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
+          Clicked="groupClassEntry_rollStudentButton_Clicked"
+          VerticalOptions="Center"
+          HorizontalOptions="Center" />
+        <Button
           x:Name="groupEntry_addStudentButton"
           ImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=+}"
           Clicked="groupEntry_addStudentButton_Clicked"

@@ -37,6 +37,7 @@ public partial class GroupEntry : ContentView, INotifyPropertyChanged
 	public event Action<Group>? OnDelete;
 	public event Action<Group>? OnUpdate;
 	public event Action<Group>? OnAddStudent;
+	public event Action<Group>? OnNewRoll;
 
 	public GroupEntry()
 	{
@@ -63,4 +64,9 @@ public partial class GroupEntry : ContentView, INotifyPropertyChanged
 	{
 		OnAddStudent?.Invoke(Group);
 	}
+
+	private void groupClassEntry_rollStudentButton_Clicked(object sender, EventArgs e)
+	{
+		OnNewRoll?.Invoke(Group);
+    }
 }

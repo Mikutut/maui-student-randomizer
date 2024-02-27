@@ -152,9 +152,9 @@ namespace StudentRandomizer.Services.SchoolClasses
 
 			var rollScope = schoolClass.RollScope;
 
-			foreach(IRoll roll in rollScope.Rolls)
+			foreach(CurrentRoll roll in rollScope.Rolls)
 			{
-				rollScope.ArchivalRolls.Add((ArchivalRoll) roll);
+				rollScope.ArchivalRolls.Add(CurrentRoll.ToArchival(roll));
 			}
 
 			rollScope.Rolls.Clear();

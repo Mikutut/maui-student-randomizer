@@ -63,6 +63,17 @@ namespace StudentRandomizer.Models
 		}
 		public event PropertyChangedEventHandler? PropertyChanged;
 
+		public static ArchivalRoll ToArchival(CurrentRoll roll)
+		{
+			return new ArchivalRoll()
+			{
+				RollRefId = roll.RollRefId,
+				RollScopeId = roll.RollScopeId,
+				Scope = roll.Scope,
+				Value = roll.Value
+			};
+		}
+
 		private void OnPropertyChanged(string? propertyName = null)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

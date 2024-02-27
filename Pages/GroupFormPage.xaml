@@ -14,7 +14,11 @@
       x:Name="groupFormPage_firstNameLabel"
       Grid.Row="0"
       Grid.Column="0"
-      Text="Imię" />
+      Text="Nazwa"
+      VerticalOptions="Center"
+      HorizontalOptions="Center"
+      VerticalTextAlignment="Center"
+      HorizontalTextAlignment="Center" />
     <Entry
       x:Name="groupFormPage_firstNameEntry"
       Grid.Row="0"
@@ -22,8 +26,10 @@
       Text="{Binding Name}"
       VerticalOptions="Center"
       HorizontalOptions="Fill" />
-    <HorizontalStackLayout
-      x:Name="groupFormPage_buttonsStackLayout"
+    <Grid
+      x:Name="groupFormPage_buttonsGrid"
+      RowDefinitions="*"
+      ColumnDefinitions="*, *"
       Grid.Row="2"
       Grid.Column="0"
       Grid.ColumnSpan="2"
@@ -31,16 +37,20 @@
       VerticalOptions="Center">
       <Button
         x:Name="groupFormPage_cancelButton"
+        Grid.Row="0"
+        Grid.Column="0"
         Text="Anuluj"
         Clicked="groupFormPage_cancelButton_Clicked"
         HorizontalOptions="Center"
         VerticalOptions="Center" />
       <Button
         x:Name="groupFormPage_submitButton"
+        Grid.Row="0"
+        Grid.Column="1"
         Text="Zatwierdź"
         Clicked="groupFormPage_submitButton_Clicked"
         HorizontalOptions="Center"
         VerticalOptions="Center" />
-    </HorizontalStackLayout>
+    </Grid>
   </Grid>
 </ContentPage>

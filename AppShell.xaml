@@ -39,5 +39,25 @@
       ContentTemplate="{DataTemplate pages:GroupAddStudentPage}"
       Route="addstudent" />
   </Tab>
+  <Tab
+    Route="schoolClasses"
+    Shell.TabBarIsVisible="false">
+    <ShellContent
+      Title="Lista klas"
+      ContentTemplate="{DataTemplate pages:SchoolClassesListPage}"
+      Route="list" />
+    <ShellContent
+      Title="Formularz klasy"
+      ContentTemplate="{DataTemplate pages:SchoolClassFormPage}"
+      Route="form" />
+    <ShellContent
+      Title="Dodawanie ucznia"
+      ContentTemplate="{DataTemplate pages:SchoolClassAddStudentPage}"
+      Route="addstudent" />
+  </Tab>
+  <ShellContent
+    Title="Nowe losowanie"
+    ContentTemplate="{DataTemplate pages:NewRollPage}"
+    Route="newroll" />
 
 </Shell>

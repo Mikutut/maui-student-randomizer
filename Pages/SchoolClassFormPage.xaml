@@ -1,49 +1,33 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="StudentRandomizer.Pages.StudentFormPage"
-             Title="Formularz ucznia"
-             x:Name="studentFormPage">
+             x:Class="StudentRandomizer.Pages.SchoolClassFormPage"
+             Title="Formularz klasy"
+             x:Name="schoolClassFormPage">
   <Grid
-    x:Name="studentFormPage_mainGrid"
-    RowDefinitions="*, *, *"
+    x:Name="schoolClassFormPage_mainGrid"
+    RowDefinitions="*, *"
     ColumnDefinitions="*, *"
     RowSpacing="10"
   >
     <Label
-      x:Name="studentFormPage_firstNameLabel"
+      x:Name="schoolClassFormPage_firstNameLabel"
       Grid.Row="0"
       Grid.Column="0"
-      Text="Imię"
+      Text="Nazwa"
       VerticalOptions="Center"
       HorizontalOptions="Center"
       VerticalTextAlignment="Center"
       HorizontalTextAlignment="Center" />
     <Entry
-      x:Name="studentFormPage_firstNameEntry"
+      x:Name="schoolClassFormPage_firstNameEntry"
       Grid.Row="0"
       Grid.Column="1"
-      Text="{Binding FirstName}"
-      VerticalOptions="Center"
-      HorizontalOptions="Fill" />
-    <Label
-      x:Name="studentFormPage_lastNameLabel"
-      Grid.Row="1"
-      Grid.Column="0"
-      Text="Nazwisko"
-      VerticalOptions="Center"
-      HorizontalOptions="Center"
-      VerticalTextAlignment="Center"
-      HorizontalTextAlignment="Center" />
-    <Entry
-      x:Name="studentFormPage_lastNameEntry"
-      Grid.Row="1"
-      Grid.Column="1"
-      Text="{Binding LastName}"
+      Text="{Binding Name}"
       VerticalOptions="Center"
       HorizontalOptions="Fill" />
     <Grid
-      x:Name="studentFormPage_buttonsGrid"
+      x:Name="schoolClassFormPage_buttonsGrid"
       RowDefinitions="*"
       ColumnDefinitions="*, *"
       Grid.Row="2"
@@ -52,19 +36,19 @@
       HorizontalOptions="Fill"
       VerticalOptions="Center">
       <Button
-        x:Name="studentFormPage_cancelButton"
         Grid.Row="0"
         Grid.Column="0"
+        x:Name="schoolClassFormPage_cancelButton"
         Text="Anuluj"
-        Clicked="studentFormPage_cancelButton_Clicked"
+        Clicked="schoolClassFormPage_cancelButton_Clicked"
         HorizontalOptions="Center"
         VerticalOptions="Center" />
       <Button
-        x:Name="studentFormPage_submitButton"
         Grid.Row="0"
         Grid.Column="1"
+        x:Name="schoolClassFormPage_submitButton"
         Text="Zatwierdź"
-        Clicked="studentFormPage_submitButton_Clicked"
+        Clicked="schoolClassFormPage_submitButton_Clicked"
         HorizontalOptions="Center"
         VerticalOptions="Center" />
     </Grid>

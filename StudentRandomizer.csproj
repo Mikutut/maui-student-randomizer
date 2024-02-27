@@ -80,6 +80,15 @@
 	  <Compile Update="Components\GroupEntry.xaml.cs">
 	    <DependentUpon>GroupEntry.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Pages\SchoolClassAddStudentPage.xaml.cs">
+	    <DependentUpon>SchoolClassAddStudentPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\SchoolClassFormPage.xaml.cs">
+	    <DependentUpon>SchoolClassFormPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\SchoolClassesListPage.xaml.cs">
+	    <DependentUpon>SchoolClassesListPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\GroupsListPage.xaml.cs">
 	    <DependentUpon>GroupsListPage.xaml</DependentUpon>
 	  </Compile>
@@ -104,10 +113,22 @@
 	  <MauiXaml Update="Components\StudentEntry.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\SchoolClassAddStudentPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\GroupAddStudentPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\SchoolClassFormPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\GroupFormPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\SchoolClassesListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\NewRollPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\StudentFormPage.xaml">
