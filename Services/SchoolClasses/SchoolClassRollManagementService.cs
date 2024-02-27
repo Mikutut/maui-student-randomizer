@@ -80,15 +80,22 @@ namespace StudentRandomizer.Services.SchoolClasses
 			var rollScope = schoolClass.RollScope;
 			var luckyNumber = _luckyNumberDataService.GetOrCreate(DateTime.UtcNow);
 
-			var rollBoundaries = GetRollBoundaries(schoolClass);
+			var allowedNumbers = GetAlllowedOrderNumbers(schoolClass);
 
 			var existingRolls = schoolClass.RollScope.Rolls;
 
-			if (existingRolls.Count >= rollBoundaries.Item2)
+			if (existingRolls.Count >= schoolClass.Students.Count)
 			{
 				ArchiveCurrentRolls(rollScopeOwnerRefId);
 				existingRolls = schoolClass.RollScope.Rolls;
 			}
+
+			var rollBoundaries = (
+				allowedNumbers.OrderByDescending(x => x)
+					.Last(),
+				allowedNumbers.OrderByDescending(x => x)
+					.First()
+				);
 
 			uint newRollValue = default(uint);
 			Random rnd = new Random();
@@ -169,19 +176,24 @@ namespace StudentRandomizer.Services.SchoolClasses
 			_rollScopeRepository.SaveChanges();
 		}
 
-		private (uint, uint) GetRollBoundaries(SchoolClass schoolClass)
+		private List<SchoolClassEntry> FilterStudents(SchoolClass schoolClass)
 		{
-			var lastOrderIndex = schoolClass.Students
-				.OrderByDescending(x => x.OrderNumber)
+			var studentEntries = schoolClass.Students;
+
+			studentEntries = studentEntries
+				.Where(x => x.Student.Attendance
+					.FirstOrDefault(y => y.Date.Date.Equals(DateTime.UtcNow))?
+					.IsPresent == true)
+				.ToList();
+
+			return studentEntries;
+		}
+
+		private ICollection<uint> GetAlllowedOrderNumbers(SchoolClass schoolClass)
+		{
+			return schoolClass.Students
 				.Select(x => x.OrderNumber)
-				.FirstOrDefault();
-
-			if(lastOrderIndex == 0)
-			{
-				lastOrderIndex = 1;
-			}
-
-			return (1, lastOrderIndex);
+				.ToList();
 		}
 	}
 }

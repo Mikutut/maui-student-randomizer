@@ -121,6 +121,7 @@ namespace StudentRandomizer.Services.SchoolClasses
 			return _schoolClassRepository.GetAll()
 				.Include(x => x.Students)
 				.ThenInclude(y => y.Student)
+				.ThenInclude(z => z.Attendance)
 				.Include(x => x.RollScope)
 				.ThenInclude(y => y.Rolls);
 		}

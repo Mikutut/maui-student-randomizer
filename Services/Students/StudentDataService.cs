@@ -141,7 +141,8 @@ namespace StudentRandomizer.Services.Students
 				.Include(x => x.Class)
 				.ThenInclude(y => y.SchoolClass)
 				.Include(x => x.Groups)
-				.ThenInclude(y => y.Group);
+				.ThenInclude(y => y.Group)
+				.Include(x => x.Attendance);
 		}
 
 		private void FilterAndSortStudents(IQueryable<Student> query,
