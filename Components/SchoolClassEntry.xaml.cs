@@ -30,6 +30,7 @@ public partial class SchoolClassEntry : ContentView, INotifyPropertyChanged
 	public event Action<SchoolClass>? OnDelete;
 	public event Action<SchoolClass>? OnUpdate;
 	public event Action<SchoolClass>? OnAddStudent;
+	public event Action<SchoolClass>? OnCheckAttendance;
 	public event Action<SchoolClass>? OnNewRoll;
 
 	public SchoolClassEntry()
@@ -50,6 +51,11 @@ public partial class SchoolClassEntry : ContentView, INotifyPropertyChanged
 	private void schoolClassEntry_addStudentButton_Clicked(object sender, EventArgs e)
 	{
 		OnAddStudent?.Invoke(SchoolClass);
+	}
+
+	private void schoolClassEntry_checkAttendanceButton_Clicked(object sender, EventArgs e)
+	{
+		OnCheckAttendance?.Invoke(SchoolClass);
 	}
 
 	private void schoolClassEntry_rollStudentButton_Clicked(object sender, EventArgs e)

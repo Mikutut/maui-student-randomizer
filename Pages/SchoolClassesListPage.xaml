@@ -54,8 +54,9 @@
             OnDelete="SchoolClassEntry_OnDelete"
             OnUpdate="SchoolClassEntry_OnUpdate"
             OnAddStudent="SchoolClassEntry_OnAddStudent"
-            OnNewRoll="SchoolClassEntry_OnNewRoll" />
-        </DataTemplate>
+            OnNewRoll="SchoolClassEntry_OnNewRoll"
+            OnCheckAttendance="SchoolClassEntry_OnCheckAttendance" />
+          </DataTemplate>
       </CollectionView.ItemTemplate>
     </CollectionView>
   </Grid>

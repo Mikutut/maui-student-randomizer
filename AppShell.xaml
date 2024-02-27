@@ -54,6 +54,10 @@
       Title="Dodawanie ucznia"
       ContentTemplate="{DataTemplate pages:SchoolClassAddStudentPage}"
       Route="addstudent" />
+    <ShellContent
+      Title="Sprawdzanie obecności"
+      ContentTemplate="{DataTemplate pages:CheckAttendencePage}"
+      Route="checkattendance" />
   </Tab>
   <ShellContent
     Title="Nowe losowanie"

@@ -21,6 +21,7 @@ namespace StudentRandomizer.EntityFrameworkCore
 		public DbSet<CurrentRoll> Rolls { get; set; } = null!;
 		public DbSet<ArchivalRoll> ArchivalRolls { get; set; } = null!;
 		public DbSet<LuckyNumber> LuckyNumbers { get; set; } = null!;
+		public DbSet<AttendanceRecord> AttendanceRecords { get; set; } = null!;
 
 		public DatabaseContext()
 			: base()
@@ -64,7 +65,8 @@ namespace StudentRandomizer.EntityFrameworkCore
 				.ApplyConfiguration<RollScope>(new RollScopeMapping())
 				.ApplyConfiguration<CurrentRoll>(new CurrentRollMapping())
 				.ApplyConfiguration<ArchivalRoll>(new ArchivalRollMapping())
-				.ApplyConfiguration<LuckyNumber>(new LuckyNumberMapping());
+				.ApplyConfiguration<LuckyNumber>(new LuckyNumberMapping())
+				.ApplyConfiguration<AttendanceRecord>(new AttendanceRecordMapping());
 		}
 	}
 }

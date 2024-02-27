@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:StudentRandomizer.Components"
+             x:Class="StudentRandomizer.Pages.CheckAttendencePage"
+             Title="Sprawdzanie obecności"
+             x:Name="checkAttendancePage">
+  <Grid
+    x:Name="checkAttendancePage_mainGrid"
+    RowDefinitions="*, *"
+    ColumnDefinitions="*">
+    <CollectionView
+      x:Name="checkAttendancePage_studentsCollectionView"
+      Grid.Row="0"
+      Grid.Column="0"
+      ItemsSource="{Binding Attendance, Source={x:Reference checkAttendancePage}}">
+      <CollectionView.EmptyView>
+        <components:EmptyCollectionView />
+      </CollectionView.EmptyView>
+      <CollectionView.ItemTemplate>
+        <DataTemplate>
+          <components:AttendanceRecordEntry
+            x:Name="checkAttendancePage_recordEntry"
+            Record="{Binding .}"
+            OnUpdate="checkAttendancePage_recordEntry_OnUpdate"/>
+        </DataTemplate>
+      </CollectionView.ItemTemplate>
+    </CollectionView>
+    <Grid
+      x:Name="checkAttendancePage_buttonsGrid"
+      Grid.Row="1"
+      Grid.Column="0"
+      RowDefinitions="*"
+      ColumnDefinitions="*, *">
+      <Button
+        x:Name="checkAttendancePage_cancelButton"
+        Grid.Row="0"
+        Grid.Column="0"
+        Text="Anuluj"
+        VerticalOptions="Center"
+        HorizontalOptions="Center"
+        Clicked="checkAttendancePage_cancelButton_Clicked" />
+      <Button
+        x:Name="checkAttendancePage_submitButton"
+        Grid.Row="0"
+        Grid.Column="1"
+        Text="Zatwierdź"
+        VerticalOptions="Center"
+        HorizontalOptions="Center"
+        Clicked="checkAttendancePage_submitButton_Clicked" />
+    </Grid>
+  </Grid>
+</ContentPage>

@@ -97,4 +97,13 @@ public partial class SchoolClassesListPage : ContentPage
 		};
 		await Shell.Current.GoToAsync("//newroll", queryParams);
     }
+
+	private async void SchoolClassEntry_OnCheckAttendance(SchoolClass obj)
+	{
+		var queryParameters = new Dictionary<string, object>
+		{
+			{ "SchoolClass", obj }
+		};
+		await Shell.Current.GoToAsync("//schoolClasses/checkattendance", queryParameters);
+	}
 }

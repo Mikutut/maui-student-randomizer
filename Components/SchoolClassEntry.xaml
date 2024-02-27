@@ -52,6 +52,12 @@
           VerticalOptions="Center"
           HorizontalOptions="Center" />
         <Button
+          x:Name="schoolClassEntry_checkAttendanceButton"
+          ImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
+          Clicked="schoolClassEntry_checkAttendanceButton_Clicked"
+          VerticalOptions="Center"
+          HorizontalOptions="Center" />
+        <Button
           x:Name="schoolClassEntry_addStudentButton"
           ImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=+}"
           Clicked="schoolClassEntry_addStudentButton_Clicked"

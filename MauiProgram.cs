@@ -65,6 +65,7 @@ public static class MauiProgram
 			.AddSingleton<SchoolClassAddStudentPage>()
 			.AddSingleton<NewRollPage>()
 			.AddSingleton<LuckyNumberPage>()
+			.AddSingleton<CheckAttendencePage>()
 			.AddSingleton<MainPage>();
 
 		return builder;
@@ -80,7 +81,8 @@ public static class MauiProgram
 			.AddTransient<IRepository<Models.GroupEntry>, EfRepository<Models.GroupEntry>>()
 			.AddTransient<IRepository<RollScope>, EfRepository<RollScope>>()
 			.AddTransient<IRepository<IRoll>, EfRepository<IRoll>>()
-			.AddTransient<IRepository<LuckyNumber>, EfRepository<LuckyNumber>>();
+			.AddTransient<IRepository<LuckyNumber>, EfRepository<LuckyNumber>>()
+			.AddTransient<IRepository<AttendanceRecord>, EfRepository<AttendanceRecord>>();
 
 		return builder;
 	}

@@ -17,6 +17,7 @@ namespace StudentRandomizer.Models
 		private List<GroupEntry> groups = new List<GroupEntry>();
 		private DateTime creationDate = DateTime.UtcNow;
 		private DateTime? modificationDate;
+		private List<AttendanceRecord> attendance = new List<AttendanceRecord>();
 
 		public long Id 
 		{
@@ -77,6 +78,16 @@ namespace StudentRandomizer.Models
 			{
 				groups = value;
 				OnPropertyChanged("Groups");
+			}
+		}
+
+		public List<AttendanceRecord> Attendance
+		{
+			get => attendance;
+			set
+			{
+				attendance = value;
+				OnPropertyChanged("Attendance");
 			}
 		}
 		public DateTime CreationDate 
