@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StudentRandomizer.Enums.Groups;
 using StudentRandomizer.Enums.Sorting;
-using StudentRandomizer.Interfaces;
 using StudentRandomizer.Models;
 using StudentRandomizer.Services.Common;
 using StudentRandomizer.Services.Groups;
@@ -119,7 +118,7 @@ namespace StudentRandomizer.Services.Groups
 			return group;
 		}
 
-		public ICollection<IRoll> GetRolls(Guid rollScopeOwnerRefId)
+		public ICollection<Roll> GetRolls(Guid rollScopeOwnerRefId)
 		{
 			throw new NotImplementedException();
 		}

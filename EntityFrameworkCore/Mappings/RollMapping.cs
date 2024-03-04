@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace StudentRandomizer.EntityFrameworkCore.Mappings
 {
-	public class ArchivalRollMapping : IEntityTypeConfiguration<ArchivalRoll>
+	public class RollMapping : IEntityTypeConfiguration<Roll>
 	{
-		public const string TableName = "ArchivalRolls";
+		public const string TableName = "Rolls";
 
-		public void Configure(EntityTypeBuilder<ArchivalRoll> builder)
+		public void Configure(EntityTypeBuilder<Roll> builder)
 		{
 			builder.ToTable(TableName);
 
@@ -23,6 +23,9 @@ namespace StudentRandomizer.EntityFrameworkCore.Mappings
 				.IsUnique();
 
 			builder.Property(x => x.RollRefId)
+				.IsRequired();
+
+			builder.Property(x => x.IndexNumber)
 				.IsRequired();
 
 			builder.Property(x => x.Value)

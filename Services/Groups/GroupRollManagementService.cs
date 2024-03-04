@@ -1,9 +1,9 @@
-﻿using StudentRandomizer.Interfaces;
-using StudentRandomizer.Models;
+﻿using StudentRandomizer.Models;
 using StudentRandomizer.Services.Common;
 using StudentRandomizer.Services.LuckyNumbers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +25,7 @@ namespace StudentRandomizer.Services.Groups
 			_rollScopeRepository = rollScopeRepository;
 		}
 
-		public IRoll GetRoll(Guid rollScopeOwnerRefId, Guid rollRefId)
+		public Roll GetRoll(Guid rollScopeOwnerRefId, Guid rollRefId)
 		{
 			var group = _groupDataService.Get(rollScopeOwnerRefId);
 
@@ -40,31 +40,11 @@ namespace StudentRandomizer.Services.Groups
 			return roll;
 		}
 
-		public ICollection<IRoll> GetCurrentRolls(Guid rollScopeOwnerRefId)
+		public ICollection<Roll> GetCurrentRolls(Guid rollScopeOwnerRefId)
 		{
 			var group = _groupDataService.Get(rollScopeOwnerRefId);
 
-			return (ICollection<IRoll>) group.RollScope.Rolls;
-		}
-
-		public ICollection<IRoll> GetArchivalRolls(Guid rollScopeOwnerRefId)
-		{
-			var group = _groupDataService.Get(rollScopeOwnerRefId);
-
-			return (ICollection<IRoll>) group.RollScope.ArchivalRolls;
-		}
-
-		public ICollection<IRoll> GetAllRolls(Guid rollScopeOwnerRefId)
-		{
-			var group = _groupDataService.Get(rollScopeOwnerRefId);
-
-			ICollection<IRoll> rolls = group.RollScope.Rolls
-				.Select(x => (IRoll) x)
-				.Concat(group.RollScope.ArchivalRolls
-					.Select(x => (IRoll)x))
-				.ToList();
-
-			return rolls;
+			return group.RollScope.Rolls;
 		}
 
 		public RollScope GetRollScope(Guid rollScopeOwnerRefId)
@@ -74,45 +54,42 @@ namespace StudentRandomizer.Services.Groups
 			return group.RollScope;
 		}
 
-		public IRoll NewRoll(Guid rollScopeOwnerRefId)
+		public Roll NewRoll(Guid rollScopeOwnerRefId)
 		{
 			var group = _groupDataService.Get(rollScopeOwnerRefId);
 			var rollScope = group.RollScope;
-			var luckyNumber = _luckyNumberDataService.GetOrCreate(DateTime.UtcNow);
 
 			var allowedNumbers = GetAllowedOrderNumbers(group);
 
-			var existingRolls = group.RollScope.Rolls;
-
-			if (existingRolls.Count >= group.Students.Count)
+			if(allowedNumbers.Count == 0)
 			{
-				ArchiveCurrentRolls(rollScopeOwnerRefId);
-				existingRolls = group.RollScope.Rolls;
+				throw new ArgumentException($"No student in class with RefId: '{rollScopeOwnerRefId}' is elligible for rolling.");
 			}
 
-			var rollBoundaries = (
-				allowedNumbers.OrderByDescending(x => x)
-					.Last(),
-				allowedNumbers.OrderByDescending(x => x)
-					.First()
-				);
+			var existingRolls = group.RollScope.Rolls;
+			var highestRollIndexNumber = existingRolls
+				.OrderByDescending(x => x.IndexNumber)
+				.Select(x => x.IndexNumber)
+				.FirstOrDefault();
 
-			uint newRollValue = default(uint);
+			var rollBoundaries = (
+				allowedNumbers.Min(),
+				allowedNumbers.Max()
+			);
+
 			Random rnd = new Random();
+			uint newRollValue = default(uint);
+
 			do
 			{
 				newRollValue = (uint)rnd.Next((int)rollBoundaries.Item1, (int)rollBoundaries.Item2 + 1);
 			}
-			while (existingRolls
-				.Select(x => x.Value)
-				.ToList()
-				.Contains(newRollValue)
-				|| newRollValue == luckyNumber.Value
-			);
+			while (!allowedNumbers.Any(x => x == newRollValue));
 
-			CurrentRoll newRoll = new CurrentRoll()
+			Roll newRoll = new Roll()
 			{
-				Value = newRollValue
+				Value = newRollValue,
+				IndexNumber = highestRollIndexNumber + 1
 			};
 
 			rollScope.Rolls.Add(newRoll);
@@ -134,56 +111,71 @@ namespace StudentRandomizer.Services.Groups
 			_rollScopeRepository.SaveChanges();
 		}
 
-		public void WipeArchivalRolls(Guid rollScopeOwnerRefId)
-		{
-			var group = _groupDataService.Get(rollScopeOwnerRefId);
-
-			var rollScope = group.RollScope;
-
-			rollScope.ArchivalRolls.Clear();
-
-			_rollScopeRepository.Update(rollScope);
-			_rollScopeRepository.SaveChanges();
-		}
-
-		public void WipeRolls(Guid rollScopeOwnerRefId)
-		{
-			var group = _groupDataService.Get(rollScopeOwnerRefId);
-
-			var rollScope = group.RollScope;
-
-			rollScope.Rolls.Clear();
-			rollScope.ArchivalRolls.Clear();
-
-			_rollScopeRepository.Update(rollScope);
-			_rollScopeRepository.SaveChanges();
-		}
-
-		public void ArchiveCurrentRolls(Guid rollScopeOwnerRefId)
-		{
-			var group = _groupDataService.Get(rollScopeOwnerRefId);
-
-			var rollScope = group.RollScope;
-
-			foreach(CurrentRoll roll in rollScope.Rolls)
-			{
-				rollScope.ArchivalRolls.Add(CurrentRoll.ToArchival(roll));
-			}
-
-			rollScope.Rolls.Clear();
-
-			_rollScopeRepository.Update(rollScope);
-			_rollScopeRepository.SaveChanges();
-		}
-
 		private List<GroupEntry> FilterStudents(Group group)
 		{
 			var studentEntries = group.Students;
 
+			studentEntries = FilterStudentsByAttendance(group, studentEntries);
+			studentEntries = FilterStudentsByRollTimeout(group, studentEntries);
+			studentEntries = FilterStudentsByLuckyNumber(group, studentEntries);
+
+			return studentEntries;
+		}
+
+		private List<GroupEntry> FilterStudentsByAttendance(Group group,
+														    List<GroupEntry> studentEntries)
+		{
 			studentEntries = studentEntries
 				.Where(x => x.Student.Attendance
-					.FirstOrDefault(y => y.Date.Date.Equals(DateTime.UtcNow))?
+					.FirstOrDefault(y => y.Date.Date.Equals(DateTime.UtcNow.Date))?
 					.IsPresent == true)
+				.ToList();
+
+			return studentEntries;
+		}
+
+		private List<GroupEntry> FilterStudentsByRollTimeout(Group group,
+															 List<GroupEntry> studentEntries)
+		{
+			var existingRolls = group.RollScope.Rolls;
+			var highestRollIndexNumber = existingRolls
+				.OrderByDescending(x => x.IndexNumber)
+				.Select(x => x.IndexNumber)
+				.FirstOrDefault();
+
+			if(highestRollIndexNumber == 0)
+			{
+				return studentEntries;
+			}
+
+			var highestRollsPerStudent = existingRolls
+				.GroupBy(r => r.Value,
+						 r => r,
+						 (value, rolls) => new
+						 {
+							 OrderNumber = value,
+							 IndexNumber = rolls.Max(r => r.IndexNumber)
+						 });
+
+			var timedOutStudents = studentEntries
+				.Where(x => highestRollsPerStudent
+					.Any(y => y.OrderNumber == x.OrderNumber
+						 && Math.Max(0, highestRollIndexNumber - y.IndexNumber) < 3))
+				.ToList();
+
+			studentEntries = studentEntries.Except(timedOutStudents)
+				.ToList();
+
+			return studentEntries;
+		}
+
+		private List<GroupEntry> FilterStudentsByLuckyNumber(Group group,
+															 List<GroupEntry> studentEntries)
+		{
+			var luckyNumber = _luckyNumberDataService.GetOrCreate(DateTime.UtcNow);
+
+			studentEntries = studentEntries
+				.Where(x => x.OrderNumber != luckyNumber.Value)
 				.ToList();
 
 			return studentEntries;

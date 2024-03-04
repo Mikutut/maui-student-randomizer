@@ -33,11 +33,6 @@ namespace StudentRandomizer.EntityFrameworkCore.Mappings
 				.WithOne(y => y.Scope)
 				.HasForeignKey(y => y.RollScopeId)
 				.IsRequired();
-
-			builder.HasMany(x => x.ArchivalRolls)
-				.WithOne(y => y.Scope)
-				.HasForeignKey(y => y.RollScopeId)
-				.IsRequired();
 		}
 	}
 }

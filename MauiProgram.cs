@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using StudentRandomizer.Components;
 using StudentRandomizer.EntityFrameworkCore;
-using StudentRandomizer.Interfaces;
 using StudentRandomizer.Models;
 using StudentRandomizer.Pages;
 using StudentRandomizer.Services.Common;
@@ -80,7 +79,7 @@ public static class MauiProgram
 			.AddTransient<IRepository<Group>, EfRepository<Group>>()
 			.AddTransient<IRepository<Models.GroupEntry>, EfRepository<Models.GroupEntry>>()
 			.AddTransient<IRepository<RollScope>, EfRepository<RollScope>>()
-			.AddTransient<IRepository<IRoll>, EfRepository<IRoll>>()
+			.AddTransient<IRepository<Roll>, EfRepository<Roll>>()
 			.AddTransient<IRepository<LuckyNumber>, EfRepository<LuckyNumber>>()
 			.AddTransient<IRepository<AttendanceRecord>, EfRepository<AttendanceRecord>>();
 

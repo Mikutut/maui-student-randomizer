@@ -49,28 +49,27 @@ public partial class CheckAttendencePage : ContentPage
 			.ToList();
 
 		Attendance.Clear();
-		foreach(AttendanceRecord record in students
-			.SelectMany(y => y.Attendance)
-			.Where(x => x.Date.Date.Equals(DateTime.UtcNow.Date))
-			.ToList())
+		foreach(Student student in students)
 		{
-			Attendance.Add(record);
-		}
+			var record = student.Attendance
+				.FirstOrDefault(x => x.Date.Date.Equals(DateTime.UtcNow.Date));
 
-		if(Attendance.Count == 0 && students.Count != 0)
-		{
-			foreach(Student student in students)
+			if(record != null)
 			{
-				var attendance = new AttendanceRecord()
+				Attendance.Add(record);
+			}
+			else
+			{
+				record = new AttendanceRecord()
 				{
 					StudentId = student.Id,
 					Student = student,
 					IsPresent = false
 				};
-				Attendance.Add(attendance);
-				_attendances.Insert(attendance);
+				Attendance.Add(record);
+				_attendances.Insert(record);
+				_attendances.SaveChanges();
 			}
-			_attendances.SaveChanges();
 		}
 	}
 

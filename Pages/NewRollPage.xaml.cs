@@ -101,38 +101,56 @@ public partial class NewRollPage : ContentPage
 
 	private void RollStudentFromClass()
 	{
-		var roll = _schoolClassRollManagementService.NewRoll(SchoolClass.SchoolClassRefId);
-		var studentRoll = SchoolClass.Students
-			.FirstOrDefault(x => x.OrderNumber == (uint)roll.Value);
+		try
+		{
+			var roll = _schoolClassRollManagementService.NewRoll(SchoolClass.SchoolClassRefId);
+			var studentRoll = SchoolClass.Students
+				.FirstOrDefault(x => x.OrderNumber == (uint)roll.Value);
 
-		if(studentRoll == null)
+			if(studentRoll == null)
+			{
+				DisplayAlert("Losowanie ucznia", "Brak uczniów do losowania", "OK");
+				Shell.Current.GoToAsync("//schoolClasses/list");
+				return;
+			}
+
+			Student = studentRoll?.Student;
+			SchoolClassEntry = studentRoll;
+			OrderNumber = studentRoll.OrderNumber;
+		}
+		catch(ArgumentException)
 		{
 			DisplayAlert("Losowanie ucznia", "Brak uczniów do losowania", "OK");
 			Shell.Current.GoToAsync("//schoolClasses/list");
 			return;
 		}
-
-		Student = studentRoll?.Student;
-		SchoolClassEntry = studentRoll;
-		OrderNumber = studentRoll.OrderNumber;
 	}
 
 	private void RollStudentFromGroup()
 	{
-		var roll = _groupRollManagementService.NewRoll(Group.GroupRefId);
-		var studentRoll = Group.Students
-			.FirstOrDefault(x => x.OrderNumber == (uint)roll.Value);
+		try
+		{
+			var roll = _groupRollManagementService.NewRoll(Group.GroupRefId);
+			var studentRoll = Group.Students
+				.FirstOrDefault(x => x.OrderNumber == (uint)roll.Value);
 
-		if(studentRoll == null)
+			if(studentRoll == null)
+			{
+				DisplayAlert("Losowanie ucznia", "Brak uczniów do losowania", "OK");
+				Shell.Current.GoToAsync("//groups/list");
+				return;
+			}
+
+			Student = studentRoll.Student;
+			GroupEntry = studentRoll;
+			OrderNumber = studentRoll.OrderNumber;
+		}
+		catch(ArgumentException)
 		{
 			DisplayAlert("Losowanie ucznia", "Brak uczniów do losowania", "OK");
 			Shell.Current.GoToAsync("//groups/list");
 			return;
 		}
-
-		Student = studentRoll.Student;
-		GroupEntry = studentRoll;
-		OrderNumber = studentRoll.OrderNumber;
 	}
 
 	private async void newRollPage_homeToolbarItem_Clicked(object sender, EventArgs e)

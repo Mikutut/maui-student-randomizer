@@ -1,0 +1,19 @@
+- [ ] Import/export:
+    - [ ] Realizacja zapisu wpisanych osób do pliku txt z podzia³em na klasy
+    - [ ] Realizacja zapisu szczê¶liwego numerka
+    - [ ] Realizacja zapisu obecno¶ci
+    - [ ] Mo¿liwo¶æ wczytywania listy klasy
+- [X] Mo¿liwo¶æ wylosowania osoby z wybranej listy
+- [X] Mo¿liwo¶æ edycji listy uczniów
+- [X] Uwzglêdnienie systemu szczê¶liwego numerka
+- [X] Mo¿liwo¶æ wy³±czania z losowania osób nieobecnych
+- [X] Brak mo¿liwo¶ci wylosowania osoby która by³a ju¿ odpytana
+  (Po 3 kolejnych wylosowanych osobach wraca do puli osób mo¿liwych do odpytania)
+- [ ] Stylowanie aplikacji w CSS:
+    - [ ] Przy pomocy CSS modyfikacja paska tytu³owego aplikacji
+    - [ ] Przy stylowaniu aplikacji w CSS wykorzystanie systemu Klas oraz wyboru po ID
+    - [ ] Wykorzystanie w zauwa¿alny sposób selektora "^"
+    - [ ] Wykorzystanie selektora bezpo¶rednich elementów podrzêdnych
+- [ ] Projekt umieszczony na GITHUB z linkiem wys³anym na forms: https://forms.office.com/e/c6pPsLmbm7
+
+Wymagania dotycz±ce CSS bêd± brane pod uwagê tylko w przypadku pe³nego ostylowania wygl±du aplikacji w plikach CSS

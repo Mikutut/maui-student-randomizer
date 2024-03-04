@@ -18,8 +18,7 @@ namespace StudentRandomizer.EntityFrameworkCore
 		public DbSet<Group> Groups { get; set; } = null!;
 		public DbSet<GroupEntry> GroupEntries { get; set; } = null!;
 		public DbSet<RollScope> RollScopes { get; set; } = null!;
-		public DbSet<CurrentRoll> Rolls { get; set; } = null!;
-		public DbSet<ArchivalRoll> ArchivalRolls { get; set; } = null!;
+		public DbSet<Roll> Rolls { get; set; } = null!;
 		public DbSet<LuckyNumber> LuckyNumbers { get; set; } = null!;
 		public DbSet<AttendanceRecord> AttendanceRecords { get; set; } = null!;
 
@@ -63,8 +62,7 @@ namespace StudentRandomizer.EntityFrameworkCore
 				.ApplyConfiguration<SchoolClassEntry>(new SchoolClassEntryMapping())
 				.ApplyConfiguration<GroupEntry>(new GroupEntryMapping())
 				.ApplyConfiguration<RollScope>(new RollScopeMapping())
-				.ApplyConfiguration<CurrentRoll>(new CurrentRollMapping())
-				.ApplyConfiguration<ArchivalRoll>(new ArchivalRollMapping())
+				.ApplyConfiguration<Roll>(new RollMapping())
 				.ApplyConfiguration<LuckyNumber>(new LuckyNumberMapping())
 				.ApplyConfiguration<AttendanceRecord>(new AttendanceRecordMapping());
 		}

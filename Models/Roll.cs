@@ -4,15 +4,15 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using StudentRandomizer.Interfaces;
 
 namespace StudentRandomizer.Models
 {
-    public class CurrentRoll : IRoll, INotifyPropertyChanged
+    public class Roll : INotifyPropertyChanged
 	{
 		private long id;
 		private Guid rollRefId = Guid.NewGuid();
 		private RollScope scope;
+		private long indexNumber;
 		private long value;
 		private DateTime creationDate = DateTime.UtcNow;
 		public long Id 
@@ -43,6 +43,15 @@ namespace StudentRandomizer.Models
 				OnPropertyChanged("Scope");
 			}
 		}
+		public long IndexNumber 
+		{ 
+			get => indexNumber;
+			set
+			{
+				this.indexNumber = value;
+				OnPropertyChanged("IndexNumber");
+			} 
+		}
 		public long Value 
 		{ 
 			get => value;
@@ -62,17 +71,6 @@ namespace StudentRandomizer.Models
 			}
 		}
 		public event PropertyChangedEventHandler? PropertyChanged;
-
-		public static ArchivalRoll ToArchival(CurrentRoll roll)
-		{
-			return new ArchivalRoll()
-			{
-				RollRefId = roll.RollRefId,
-				RollScopeId = roll.RollScopeId,
-				Scope = roll.Scope,
-				Value = roll.Value
-			};
-		}
 
 		private void OnPropertyChanged(string? propertyName = null)
 		{

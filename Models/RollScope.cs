@@ -15,7 +15,6 @@ namespace StudentRandomizer.Models
 		public Group? Group { get; set; }
 		public long? SchoolClassId { get; set; }
 		public SchoolClass? SchoolClass { get; set; }
-		public List<CurrentRoll> Rolls { get; set; } = new List<CurrentRoll>();
-		public List<ArchivalRoll> ArchivalRolls { get; set; } = new List<ArchivalRoll>();
+		public List<Roll> Rolls { get; set; } = new List<Roll>();
 	}
 }
