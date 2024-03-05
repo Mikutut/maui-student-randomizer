@@ -8,7 +8,7 @@
     x:Name="schoolClassEntry_mainGrid"
     BindingContext="{x:Reference schoolClassEntry}"
     RowDefinitions="*"
-    ColumnDefinitions="*, *, *"
+    ColumnDefinitions="*, *, 2*"
     ColumnSpacing="10"
     HorizontalOptions="Fill"
     VerticalOptions="Fill">

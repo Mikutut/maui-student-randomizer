@@ -28,6 +28,8 @@
 .action-button {
   background-color: #ff9f00;
   color: #ffffff;
+  width: 75;
+  height: 50;
 }
 
 .cancel-button {

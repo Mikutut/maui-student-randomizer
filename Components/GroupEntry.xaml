@@ -8,7 +8,7 @@
     x:Name="groupEntry_mainGrid"
     BindingContext="{x:Reference groupEntry}"
     RowDefinitions="*"
-    ColumnDefinitions="*, *, *"
+    ColumnDefinitions="*, *, 2*"
     ColumnSpacing="10"
     HorizontalOptions="Fill"
     VerticalOptions="Fill">
