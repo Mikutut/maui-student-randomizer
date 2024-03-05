@@ -11,8 +11,6 @@ public partial class GroupEntry : ContentView, INotifyPropertyChanged
 		typeof(GroupEntry),
 		null);
 
-	private int studentsCount = 0;
-
 	public Group Group
 	{
 		get => (Group)GetValue(GroupProperty);
@@ -20,17 +18,6 @@ public partial class GroupEntry : ContentView, INotifyPropertyChanged
 		{
 			SetValue(GroupProperty, value);
 			OnPropertyChanged("Group");
-			ReloadStudentsCount();
-		}
-	}
-
-	public int StudentsCount
-	{
-		get => studentsCount;
-		set
-		{
-			studentsCount = value;
-			OnPropertyChanged("StudentsCount");
 		}
 	}
 
@@ -42,12 +29,6 @@ public partial class GroupEntry : ContentView, INotifyPropertyChanged
 	public GroupEntry()
 	{
 		InitializeComponent();
-	}
-
-	public void ReloadStudentsCount()
-	{
-		StudentsCount = Group.Students?.AsEnumerable()
-			.Count() ?? 0;
 	}
 
 	private void groupEntry_deleteButton_Clicked(object sender, EventArgs e)

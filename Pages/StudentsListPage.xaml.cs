@@ -1,6 +1,7 @@
 ﻿using StudentRandomizer.Models;
 using StudentRandomizer.Services.Students;
 using StudentRandomizer.Services.Students.Inputs;
+using System.Collections.ObjectModel;
 
 namespace StudentRandomizer.Pages;
 
@@ -8,9 +9,9 @@ public partial class StudentsListPage : ContentPage
 {
 	private readonly IStudentDataService _studentDataService;
 
-	private List<Student> students = new List<Student>();
+	private ObservableCollection<Student> students = new ObservableCollection<Student>();
 
-	public List<Student> Students
+	public ObservableCollection<Student> Students
 	{
 		get => students;
 		set
@@ -37,8 +38,10 @@ public partial class StudentsListPage : ContentPage
 
 	private void RefreshStudentsList()
 	{
-		Students = _studentDataService.GetAll(new GetAllStudentsInput())
-			.ToList();
+		Students.Clear();
+		_studentDataService.GetAll(new GetAllStudentsInput())
+			.ToList()
+			.ForEach(x => Students.Add(x));
 	}
 
 	private async void studentsListPage_homeToolbarItem_Clicked(object sender, EventArgs e)

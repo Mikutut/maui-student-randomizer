@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vc="clr-namespace:StudentRandomizer.ValueConverters"
              x:Class="StudentRandomizer.Components.GroupEntry"
              x:Name="groupEntry">
   <Grid
@@ -25,7 +26,7 @@
       x:Name="groupEntry_studentsCountLabel"
       Grid.Row="0"
       Grid.Column="1"
-      Text="{Binding StudentsCount}"
+      Text="{Binding Group, Converter={vc:GroupStudentsCountConverter}}"
       HorizontalOptions="Center"
       VerticalOptions="Center"
       HorizontalTextAlignment="Center"

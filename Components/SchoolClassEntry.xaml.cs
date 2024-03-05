@@ -18,13 +18,7 @@ public partial class SchoolClassEntry : ContentView, INotifyPropertyChanged
 		{
 			SetValue(SchoolClassProperty, value);
 			OnPropertyChanged("SchoolClass");
-			OnPropertyChanged("StudentsCount");
 		}
-	}
-
-	public int StudentsCount
-	{
-		get => SchoolClass?.Students.Count ?? 0;
 	}
 
 	public event Action<SchoolClass>? OnDelete;
