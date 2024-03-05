@@ -39,7 +39,14 @@ public partial class StudentsListPage : ContentPage
 	private void RefreshStudentsList()
 	{
 		Students.Clear();
-		_studentDataService.GetAll(new GetAllStudentsInput())
+		_studentDataService.GetAll(new GetAllStudentsInput()
+		{
+			Sorting = new SortStudentsInput()
+			{
+				SortBy = Enums.Students.SortStudentsBy.LastName,
+				Direction = Enums.Sorting.SortingDirection.Ascending
+			}
+		})
 			.ToList()
 			.ForEach(x => Students.Add(x));
 	}

@@ -160,6 +160,7 @@ namespace StudentRandomizer.Services.Groups
 			var timedOutStudents = studentEntries
 				.Where(x => highestRollsPerStudent
 					.Any(y => y.OrderNumber == x.OrderNumber
+						 && y.IndexNumber != 0
 						 && Math.Max(0, highestRollIndexNumber - y.IndexNumber) < 3))
 				.ToList();
 

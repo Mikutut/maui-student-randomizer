@@ -7,8 +7,9 @@
              x:Name="checkAttendancePage">
   <Grid
     x:Name="checkAttendancePage_mainGrid"
-    RowDefinitions="*, *"
-    ColumnDefinitions="*">
+    RowDefinitions="*, Auto"
+    ColumnDefinitions="*"
+    RowSpacing="10">
     <CollectionView
       x:Name="checkAttendancePage_studentsCollectionView"
       Grid.Row="0"
@@ -31,7 +32,8 @@
       Grid.Row="1"
       Grid.Column="0"
       RowDefinitions="*"
-      ColumnDefinitions="*, *">
+      ColumnDefinitions="*, *"
+      Margin="10">
       <Button
         x:Name="checkAttendancePage_cancelButton"
         Grid.Row="0"

@@ -1,4 +1,6 @@
+using StudentRandomizer.Models;
 using StudentRandomizer.Services.LuckyNumbers;
+using System.Collections.ObjectModel;
 
 namespace StudentRandomizer.Pages;
 
@@ -6,9 +8,10 @@ public partial class LuckyNumberPage : ContentPage
 {
 	private readonly ILuckyNumberDataService _luckyNumberDataService;
 
-	private Models.LuckyNumber luckyNumber;
+	private LuckyNumber luckyNumber;
+	private ObservableCollection<LuckyNumber> archivedNumbers = new ObservableCollection<LuckyNumber>();
 
-	public Models.LuckyNumber LuckyNumber
+	public LuckyNumber LuckyNumber
 	{
 		get => luckyNumber;
 		set
@@ -18,18 +21,34 @@ public partial class LuckyNumberPage : ContentPage
 		}
 	}
 
+	public ObservableCollection<LuckyNumber> ArchivedNumbers
+	{
+		get => archivedNumbers;
+	}
+
 	public LuckyNumberPage(ILuckyNumberDataService luckyNumberDataService)
 	{
 		_luckyNumberDataService = luckyNumberDataService;
 		InitializeComponent();
 
-		GetLuckyNumber();
-		BindingContext = LuckyNumber;
+		GetCurrentLuckyNumber();
+		GetArchivedNumbers();
 	}
 
-	private void GetLuckyNumber()
+	private void GetCurrentLuckyNumber()
 	{
 		LuckyNumber = _luckyNumberDataService.GetOrCreate(DateTime.UtcNow);
+	}
+
+	private void GetArchivedNumbers()
+	{
+		ArchivedNumbers.Clear();
+
+		_luckyNumberDataService.GetAll()
+			.OrderByDescending(x => x.CreationDate)
+			.Skip(1)
+			.ToList()
+			.ForEach(x => ArchivedNumbers.Add(x));
 	}
 
 	private async void luckyNumberPage_homeToolbarItem_Clicked(object sender, EventArgs e)

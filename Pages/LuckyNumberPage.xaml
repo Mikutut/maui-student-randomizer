@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:StudentRandomizer.Components"
+             xmlns:vc="clr-namespace:StudentRandomizer.ValueConverters"
              x:Class="StudentRandomizer.Pages.LuckyNumberPage"
-             Title="Szczęśliwy numerek">
+             Title="Szczęśliwy numerek"
+             x:Name="luckyNumberPage">
   <ContentPage.ToolbarItems>
     <ToolbarItem
       x:Name="luckyNumberPage_homeToolbarItem"
@@ -12,8 +15,8 @@
   </ContentPage.ToolbarItems>
   <Grid
     x:Name="luckyNumberPage_mainGrid"
-    RowDefinitions="*, *"
-    ColumnDefinitions="*">
+    RowDefinitions="Auto, *"
+    ColumnDefinitions="*, *">
     <Label
       x:Name="luckyNumberPage_titleLabel"
       Grid.Row="0"
@@ -27,11 +30,62 @@
       x:Name="luckyNumberPage_numberLabel"
       Grid.Row="1"
       Grid.Column="0"
-      Text="{Binding Value}"
+      Text="{Binding Path=LuckyNumber.Value, Source={x:Reference luckyNumberPage}}"
       FontSize="Large"
       VerticalOptions="Center"
       HorizontalOptions="Center"
       VerticalTextAlignment="Center"
       HorizontalTextAlignment="Center"/>
+    <Label
+      x:Name="luckyNumberPage_archivedNumbersLabel"
+      Grid.Row="0"
+      Grid.Column="1"
+      Text="Historyczne szczęśliwe numerki"
+      VerticalOptions="Center"
+      HorizontalOptions="Center"
+      VerticalTextAlignment="Center"
+      HorizontalTextAlignment="Center"/>
+    <CollectionView
+      x:Name="luckyNumberPage_archivedNumbersCollectionView"
+      Grid.Row="1"
+      Grid.Column="1"
+      ItemsSource="{Binding Path=ArchivedNumbers, Source={x:Reference luckyNumberPage}}"
+      Margin="10">
+      <CollectionView.ItemsLayout>
+        <LinearItemsLayout
+          Orientation="Vertical"
+          ItemSpacing="10" />
+      </CollectionView.ItemsLayout>
+      <CollectionView.EmptyView>
+        <components:EmptyCollectionView />
+      </CollectionView.EmptyView>
+      <CollectionView.ItemTemplate>
+        <DataTemplate>
+          <Grid
+            x:Name="luckyNumberPage_archivedNumberGrid"
+            RowDefinitions="*"
+            ColumnDefinitions="*, *">
+            <Label
+              x:Name="luckyNumberPage_archivedNumberDateLabel"
+              Grid.Row="0"
+              Grid.Column="0"
+              Text="{Binding CreationDate, Converter={vc:DateTimeToDateConverter}}"
+              HorizontalOptions="Center"
+              VerticalOptions="Center"
+              HorizontalTextAlignment="Center"
+              VerticalTextAlignment="Center" />
+            <Label
+              x:Name="luckyNumberPage_archivedNumberValueLabel"
+              Grid.Row="0"
+              Grid.Column="1"
+              Text="{Binding Value}"
+              HorizontalOptions="Center"
+              VerticalOptions="Center"
+              HorizontalTextAlignment="Center"
+              VerticalTextAlignment="Center" />
+          </Grid>
+        </DataTemplate>
+      </CollectionView.ItemTemplate>
+    </CollectionView>
   </Grid>
 </ContentPage>

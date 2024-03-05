@@ -1,7 +1,9 @@
 ﻿using StudentRandomizer.Models;
+using StudentRandomizer.Pages.Models;
 using StudentRandomizer.Services.Common;
 using StudentRandomizer.Services.Groups;
 using StudentRandomizer.Services.SchoolClasses;
+using System.Collections.ObjectModel;
 
 namespace StudentRandomizer.Pages;
 
@@ -14,12 +16,18 @@ public partial class NewRollPage : ContentPage
 	private readonly IRollManagementService<Group> _groupRollManagementService;
 	private readonly IRollManagementService<SchoolClass> _schoolClassRollManagementService;
 
+	private ObservableCollection<ArchivalRoll> archiveRolls = new ObservableCollection<ArchivalRoll>();
 	private Group? group = null;
-	private Models.GroupEntry? groupEntry = null;
+	private GroupEntry? groupEntry = null;
 	private SchoolClass? schoolClass = null;
-	private Models.SchoolClassEntry? schoolClassEntry = null;
+	private SchoolClassEntry? schoolClassEntry = null;
 	private uint? orderNumber = null;
 	private Student student;
+
+	public ObservableCollection<ArchivalRoll> ArchiveRolls
+	{
+		get => archiveRolls;
+	}
 
 	public Group? Group
 	{
@@ -32,11 +40,12 @@ public partial class NewRollPage : ContentPage
 			if(group != null)
 			{
 				RollStudentFromGroup();
+				ReloadArchiveRolls();
 			}
 		}
 	}
 
-	public Models.GroupEntry? GroupEntry
+	public GroupEntry? GroupEntry
 	{
 		get => groupEntry;
 		set
@@ -57,11 +66,12 @@ public partial class NewRollPage : ContentPage
 			if(schoolClass != null)
 			{
 				RollStudentFromClass();
+				ReloadArchiveRolls();
 			}
 		}
 	}
 
-	public Models.SchoolClassEntry? SchoolClassEntry
+	public SchoolClassEntry? SchoolClassEntry
 	{
 		get => schoolClassEntry;
 		set
@@ -97,6 +107,48 @@ public partial class NewRollPage : ContentPage
 		_groupRollManagementService = groupRollManagementService;
 		_schoolClassRollManagementService = schoolClassRollManagementService;
 		InitializeComponent();
+	}
+
+	private void ReloadArchiveRolls()
+	{
+		if(SchoolClass != null)
+		{
+			ArchiveRolls.Clear();
+			_schoolClassRollManagementService.GetCurrentRolls(SchoolClass.SchoolClassRefId)
+				.OrderByDescending(x => x.IndexNumber)
+				.Skip(1)
+				.ToList()
+				.ForEach(x =>
+				{
+					var student = SchoolClass.Students
+						.FirstOrDefault(y => y.OrderNumber == x.Value);
+
+					ArchiveRolls.Add(new ArchivalRoll()
+					{
+						Roll = x,
+						Student = student.Student
+					});
+				});
+		}
+		else if(Group != null)
+		{
+			ArchiveRolls.Clear();
+			_groupRollManagementService.GetCurrentRolls(Group.GroupRefId)
+				.OrderByDescending(x => x.IndexNumber)
+				.Skip(1)
+				.ToList()
+				.ForEach(x => 
+				{
+					var student = Group.Students
+						.FirstOrDefault(y => y.OrderNumber == x.Value);
+
+					ArchiveRolls.Add(new ArchivalRoll()
+					{
+						Roll = x,
+						Student = student.Student
+					});
+				});
+		}
 	}
 
 	private void RollStudentFromClass()
@@ -163,10 +215,12 @@ public partial class NewRollPage : ContentPage
 		if(SchoolClass != null)
 		{
 			RollStudentFromClass();
+			ReloadArchiveRolls();
 		}
 		else if(Group != null)
 		{
 			RollStudentFromGroup();
+			ReloadArchiveRolls();
 		}
 		else
 		{

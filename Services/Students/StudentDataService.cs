@@ -71,7 +71,7 @@ namespace StudentRandomizer.Services.Students
 		{
 			var studentsQuery = GetBaseStudentsQuery();
 
-			FilterAndSortStudents(studentsQuery, input);
+			studentsQuery = FilterAndSortStudents(studentsQuery, input);
 
 			return studentsQuery.ToList();
 		}
@@ -145,8 +145,8 @@ namespace StudentRandomizer.Services.Students
 				.Include(x => x.Attendance);
 		}
 
-		private void FilterAndSortStudents(IQueryable<Student> query,
-										   GetAllStudentsInput input)
+		private IQueryable<Student> FilterAndSortStudents(IQueryable<Student> query,
+														  GetAllStudentsInput input)
 		{
 			if(input.Sorting != null)
 			{
@@ -165,6 +165,8 @@ namespace StudentRandomizer.Services.Students
 					_ => query
 				};
 			}
+
+			return query;
 		}
 
 		public void AddStudentToClass(Student student, Guid schoolClassRefId)

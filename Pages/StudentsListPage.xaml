@@ -31,8 +31,12 @@
       Grid.Column="0"
       HorizontalOptions="Fill"
       VerticalOptions="Fill"
-      ItemsSource="{Binding Students}"
-      ItemsLayout="VerticalList">
+      ItemsSource="{Binding Students}">
+      <CollectionView.ItemsLayout>
+        <LinearItemsLayout 
+          Orientation="Vertical"
+          ItemSpacing="10" />
+      </CollectionView.ItemsLayout>
       <CollectionView.EmptyView>
         <Grid
           RowDefinitions="*"

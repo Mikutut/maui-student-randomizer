@@ -46,6 +46,7 @@ public partial class CheckAttendencePage : ContentPage
 	{
 		var students = SchoolClass.Students
 			.Select(x => x.Student)
+			.OrderBy(x => x.LastName)
 			.ToList();
 
 		Attendance.Clear();

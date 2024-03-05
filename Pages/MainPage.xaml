@@ -24,7 +24,6 @@
       Grid.Row="1"
       Grid.Column="0"
       x:Name="mainPage_buttonsGrid"
-      ColumnSpacing="20"
       RowSpacing="20">
       <Grid.RowDefinitions>
         <RowDefinition Height="*" />
@@ -32,64 +31,78 @@
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="*" />
-        <ColumnDefinition Width="*" />
-        <ColumnDefinition Width="*" />
       </Grid.ColumnDefinitions>
-      <components:ImageTextButton 
-        x:Name="mainPage_studentsListButton"
+      <Grid
+        x:Name="mainPage_buttonsRowGrid_1"
         Grid.Row="0"
         Grid.Column="0"
-        Image="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
-        Text="Lista uczniów"
-        HeightRequest="200"
-        WidthRequest="200"
-        HorizontalOptions="Center"
-        VerticalOptions="Center"
-        Clicked="mainPage_studentsListButton_Clicked" />
-      <components:ImageTextButton 
-        x:Name="mainPage_schoolClassesListButton"
-        Grid.Row="0"
-        Grid.Column="1"
-        Text="Lista klas"
-        Image="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
-        HeightRequest="200"
-        WidthRequest="200"
-        HorizontalOptions="Center"
-        VerticalOptions="Center"
-        Clicked="mainPage_schoolClassesListButton_Clicked" />
-      <components:ImageTextButton 
-        x:Name="mainPage_groupsListButton"
-        Grid.Row="0"
-        Grid.Column="2"
-        Text="Lista grup"
-        Image="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
-        HeightRequest="200"
-        WidthRequest="200"
-        HorizontalOptions="Center"
-        VerticalOptions="Center"
-        Clicked="mainPage_groupsListButton_Clicked" />
-      <components:ImageTextButton 
-        x:Name="mainPage_luckyNumberButton"
+        RowDefinitions="*"
+        ColumnDefinitions="*, *, *"
+        ColumnSpacing="20" >
+        <components:ImageTextButton 
+          x:Name="mainPage_studentsListButton"
+          Grid.Row="0"
+          Grid.Column="0"
+          Image="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
+          Text="Lista uczniów"
+          HeightRequest="200"
+          WidthRequest="200"
+          HorizontalOptions="Center"
+          VerticalOptions="Center"
+          Clicked="mainPage_studentsListButton_Clicked" />
+        <components:ImageTextButton 
+          x:Name="mainPage_schoolClassesListButton"
+          Grid.Row="0"
+          Grid.Column="1"
+          Text="Lista klas"
+          Image="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
+          HeightRequest="200"
+          WidthRequest="200"
+          HorizontalOptions="Center"
+          VerticalOptions="Center"
+          Clicked="mainPage_schoolClassesListButton_Clicked" />
+        <components:ImageTextButton 
+          x:Name="mainPage_groupsListButton"
+          Grid.Row="0"
+          Grid.Column="2"
+          Text="Lista grup"
+          Image="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
+          HeightRequest="200"
+          WidthRequest="200"
+          HorizontalOptions="Center"
+          VerticalOptions="Center"
+          Clicked="mainPage_groupsListButton_Clicked" />
+      </Grid>
+      <Grid
+        x:Name="mainPage_buttonsRowGrid_2"
         Grid.Row="1"
         Grid.Column="0"
-        Text="Szczęśliwy numerek"
-        Image="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
-        HeightRequest="200"
-        WidthRequest="200"
-        HorizontalOptions="Center"
-        VerticalOptions="Center"
-        Clicked="mainPage_luckyNumberButton_Clicked" />
-      <components:ImageTextButton 
-        x:Name="mainPage_externalDataButton"
-        Grid.Row="1"
-        Grid.Column="1"
-        Text="Import/eksport danych"
-        Image="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
-        HeightRequest="200"
-        WidthRequest="200"
-        HorizontalOptions="Center"
-        VerticalOptions="Center"
-        Clicked="mainPage_externalDataButton_Clicked" />
+        RowDefinitions="*"
+        ColumnDefinitions="*, *"
+        ColumnSpacing="20" >
+        <components:ImageTextButton 
+          x:Name="mainPage_luckyNumberButton"
+          Grid.Row="1"
+          Grid.Column="0"
+          Text="Szczęśliwy numerek"
+          Image="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
+          HeightRequest="200"
+          WidthRequest="200"
+          HorizontalOptions="Center"
+          VerticalOptions="Center"
+          Clicked="mainPage_luckyNumberButton_Clicked" />
+        <components:ImageTextButton 
+          x:Name="mainPage_externalDataButton"
+          Grid.Row="1"
+          Grid.Column="1"
+          Text="Import/eksport danych"
+          Image="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
+          HeightRequest="200"
+          WidthRequest="200"
+          HorizontalOptions="Center"
+          VerticalOptions="Center"
+          Clicked="mainPage_externalDataButton_Clicked" />
+      </Grid>
     </Grid>
   </Grid>
 </ContentPage>

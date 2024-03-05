@@ -15,7 +15,8 @@
   <Grid
     x:Name="newRollPage_mainGrid"
     RowDefinitions="Auto, *, Auto"
-    ColumnDefinitions="*">
+    ColumnDefinitions="*, *"
+    RowSpacing="10">
     <Label
       x:Name="newRollPage_titleLabel"
       Grid.Row="0"
@@ -29,47 +30,124 @@
       Grid.Row="1"
       Grid.Column="0"
       x:Name="newRollPage_studentGrid"
-      RowDefinitions="*"
-      ColumnDefinitions="*, *, *"
-      BindingContext="{Binding Source={x:Reference newRollPage}, Path=Student}">
+      RowDefinitions="Auto, Auto"
+      ColumnDefinitions="*"
+      RowSpacing="20"
+      BindingContext="{Binding Source={x:Reference newRollPage}, Path=Student}"
+      VerticalOptions="Center">
       <Label
         x:Name="newRollPage_studentOrderNumberLabel"
         Grid.Row="0"
         Grid.Column="0"
         Text="{Binding Source={x:Reference newRollPage}, Path=OrderNumber}"
+        FontSize="Large"
         VerticalOptions="Center"
         HorizontalOptions="Center"
         VerticalTextAlignment="Center"
         HorizontalTextAlignment="Center" />
-      <Label
-        x:Name="newRollPage_studentLastNameLabel"
-        Grid.Row="0"
-        Grid.Column="1" 
-        Text="{Binding LastName}"
-        VerticalOptions="Center"
-        HorizontalOptions="Center"
-        VerticalTextAlignment="Center"
-        HorizontalTextAlignment="Center" />
-      <Label
-        x:Name="newRollPage_studentFirstNameLabel"
-        Grid.Row="0"
-        Grid.Column="2"
-        Text="{Binding FirstName}"
-        VerticalOptions="Center"
-        HorizontalOptions="Center"
-        VerticalTextAlignment="Center"
-        HorizontalTextAlignment="Center" />
+      <Grid
+        x:Name="newRollPage_studentDetailsGrid"
+        Grid.Row="1"
+        Grid.Column="0"
+        RowDefinitions="*"
+        ColumnDefinitions="*, *">
+        <Label
+          x:Name="newRollPage_studentLastNameLabel"
+          Grid.Row="0"
+          Grid.Column="0" 
+          Text="{Binding LastName}"
+          VerticalOptions="Center"
+          HorizontalOptions="Center"
+          VerticalTextAlignment="Center"
+          HorizontalTextAlignment="Center" />
+        <Label
+          x:Name="newRollPage_studentFirstNameLabel"
+          Grid.Row="0"
+          Grid.Column="1"
+          Text="{Binding FirstName}"
+          VerticalOptions="Center"
+          HorizontalOptions="Center"
+          VerticalTextAlignment="Center"
+          HorizontalTextAlignment="Center" />
+      </Grid>
     </Grid>
-    <components:ImageTextButton
-      x:Name="newRollPage_rerollButton"
+    <Label
+      x:Name="newRollPage_archiveRollsLabel"
+      Grid.Row="0"
+      Grid.Column="1"
+      Text="Historyczne losy"
+      VerticalOptions="Center"
+      HorizontalOptions="Center"
+      VerticalTextAlignment="Center"
+      HorizontalTextAlignment="Center" />
+    <CollectionView
+      x:Name="newRollPage_archiveRollsCollectionView"
+      Grid.Row="1"
+      Grid.Column="1"
+      ItemsSource="{Binding ArchiveRolls, Source={x:Reference newRollPage}}">
+      <CollectionView.ItemsLayout>
+        <LinearItemsLayout
+          Orientation="Vertical"
+          ItemSpacing="10" />
+      </CollectionView.ItemsLayout>
+      <CollectionView.ItemTemplate>
+        <DataTemplate>
+          <Grid
+            x:Name="newRollPage_archiveRollGrid"
+            RowDefinitions="*"
+            ColumnDefinitions="*, *, *">
+            <Label
+              x:Name="newRollPage_archiveRollIndexNumberLabel"
+              Grid.Row="0"
+              Grid.Column="0"
+              Text="{Binding Roll.Value}"
+              HorizontalOptions="Center"
+              VerticalOptions="Center"
+              HorizontalTextAlignment="Center"
+              VerticalTextAlignment="Center" />
+            <Label
+              x:Name="newRollPage_archiveRollLastNameLabel"
+              Grid.Row="0"
+              Grid.Column="1"
+              Text="{Binding Student.LastName}"
+              HorizontalOptions="Center"
+              VerticalOptions="Center"
+              HorizontalTextAlignment="Center"
+              VerticalTextAlignment="Center" />
+            <Label
+              x:Name="newRollPage_archiveRollFirstNameLabel"
+              Grid.Row="0"
+              Grid.Column="2"
+              Text="{Binding Student.FirstName}"
+              HorizontalOptions="Center"
+              VerticalOptions="Center"
+              HorizontalTextAlignment="Center"
+              VerticalTextAlignment="Center" />
+          </Grid>
+        </DataTemplate>
+      </CollectionView.ItemTemplate>
+      <CollectionView.EmptyView>
+        <components:EmptyCollectionView />
+      </CollectionView.EmptyView>
+    </CollectionView>
+    <Grid
+      x:Name="newRollPage_buttonsGrid"
       Grid.Row="2"
       Grid.Column="0"
-      Text="Powtórz losowanie"
-      HeightRequest="200"
-      WidthRequest="200"
-      Image="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
-      Clicked="newRollPage_rerollButton_Clicked"
-      VerticalOptions="Center"
-      HorizontalOptions="Center" />
+      Grid.ColumnSpan="2"
+      RowDefinitions="*"
+      ColumnDefinitions="*">
+      <components:ImageTextButton
+        x:Name="newRollPage_rerollButton"
+        Grid.Row="0"
+        Grid.Column="0"
+        Text="Powtórz losowanie"
+        HeightRequest="150"
+        WidthRequest="150"
+        Image="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
+        Clicked="newRollPage_rerollButton_Clicked"
+        VerticalOptions="Center"
+        HorizontalOptions="Center" />
+    </Grid>
   </Grid>
 </ContentPage>
