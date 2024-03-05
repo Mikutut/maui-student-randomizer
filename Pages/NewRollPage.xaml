@@ -19,13 +19,12 @@
     RowSpacing="10">
     <Label
       x:Name="newRollPage_titleLabel"
+      StyleClass="centered-label"
       Grid.Row="0"
       Grid.Column="0"
       Text="Wylosowano ucznia"
       VerticalOptions="Center"
-      HorizontalOptions="Center"
-      VerticalTextAlignment="Center"
-      HorizontalTextAlignment="Center" />
+      HorizontalOptions="Center" />
     <Grid
       Grid.Row="1"
       Grid.Column="0"
@@ -37,14 +36,13 @@
       VerticalOptions="Center">
       <Label
         x:Name="newRollPage_studentOrderNumberLabel"
+        StyleClass="centered-label"
         Grid.Row="0"
         Grid.Column="0"
         Text="{Binding Source={x:Reference newRollPage}, Path=OrderNumber}"
         FontSize="Large"
         VerticalOptions="Center"
-        HorizontalOptions="Center"
-        VerticalTextAlignment="Center"
-        HorizontalTextAlignment="Center" />
+        HorizontalOptions="Center" />
       <Grid
         x:Name="newRollPage_studentDetailsGrid"
         Grid.Row="1"
@@ -53,33 +51,30 @@
         ColumnDefinitions="*, *">
         <Label
           x:Name="newRollPage_studentLastNameLabel"
+          StyleClass="centered-label"
           Grid.Row="0"
           Grid.Column="0" 
           Text="{Binding LastName}"
           VerticalOptions="Center"
-          HorizontalOptions="Center"
-          VerticalTextAlignment="Center"
-          HorizontalTextAlignment="Center" />
+          HorizontalOptions="Center" />
         <Label
           x:Name="newRollPage_studentFirstNameLabel"
+          StyleClass="centered-label"
           Grid.Row="0"
           Grid.Column="1"
           Text="{Binding FirstName}"
           VerticalOptions="Center"
-          HorizontalOptions="Center"
-          VerticalTextAlignment="Center"
-          HorizontalTextAlignment="Center" />
+          HorizontalOptions="Center" />
       </Grid>
     </Grid>
     <Label
       x:Name="newRollPage_archiveRollsLabel"
+      StyleClass="centered-label"
       Grid.Row="0"
       Grid.Column="1"
       Text="Historyczne losy"
       VerticalOptions="Center"
-      HorizontalOptions="Center"
-      VerticalTextAlignment="Center"
-      HorizontalTextAlignment="Center" />
+      HorizontalOptions="Center" />
     <CollectionView
       x:Name="newRollPage_archiveRollsCollectionView"
       Grid.Row="1"
@@ -98,31 +93,28 @@
             ColumnDefinitions="*, *, *">
             <Label
               x:Name="newRollPage_archiveRollIndexNumberLabel"
+              StyleClass="centered-label"
               Grid.Row="0"
               Grid.Column="0"
               Text="{Binding Roll.Value}"
               HorizontalOptions="Center"
-              VerticalOptions="Center"
-              HorizontalTextAlignment="Center"
-              VerticalTextAlignment="Center" />
+              VerticalOptions="Center" />
             <Label
               x:Name="newRollPage_archiveRollLastNameLabel"
+              StyleClass="centered-label"
               Grid.Row="0"
               Grid.Column="1"
               Text="{Binding Student.LastName}"
               HorizontalOptions="Center"
-              VerticalOptions="Center"
-              HorizontalTextAlignment="Center"
-              VerticalTextAlignment="Center" />
+              VerticalOptions="Center" />
             <Label
               x:Name="newRollPage_archiveRollFirstNameLabel"
+              StyleClass="centered-label"
               Grid.Row="0"
               Grid.Column="2"
               Text="{Binding Student.FirstName}"
               HorizontalOptions="Center"
-              VerticalOptions="Center"
-              HorizontalTextAlignment="Center"
-              VerticalTextAlignment="Center" />
+              VerticalOptions="Center" />
           </Grid>
         </DataTemplate>
       </CollectionView.ItemTemplate>

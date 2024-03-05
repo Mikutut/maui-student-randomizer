@@ -11,16 +11,15 @@
     RowSpacing="10"
   >
     <Label
-      x:Name="schoolClassFormPage_firstNameLabel"
+      x:Name="schoolClassFormPage_nameLabel"
+      StyleClass="centered-label"
       Grid.Row="0"
       Grid.Column="0"
       Text="Nazwa"
       VerticalOptions="Center"
-      HorizontalOptions="Center"
-      VerticalTextAlignment="Center"
-      HorizontalTextAlignment="Center" />
+      HorizontalOptions="Center"/>
     <Entry
-      x:Name="schoolClassFormPage_firstNameEntry"
+      x:Name="schoolClassFormPage_nameEntry"
       Grid.Row="0"
       Grid.Column="1"
       Text="{Binding Name}"
@@ -39,6 +38,7 @@
         Grid.Row="0"
         Grid.Column="0"
         x:Name="schoolClassFormPage_cancelButton"
+        StyleClass="cancel-button"
         Text="Anuluj"
         Clicked="schoolClassFormPage_cancelButton_Clicked"
         HorizontalOptions="Center"
@@ -47,6 +47,7 @@
         Grid.Row="0"
         Grid.Column="1"
         x:Name="schoolClassFormPage_submitButton"
+        StyleClass="confirm-button"
         Text="Zatwierdź"
         Clicked="schoolClassFormPage_submitButton_Clicked"
         HorizontalOptions="Center"

@@ -12,13 +12,12 @@
   >
     <Label
       x:Name="groupFormPage_firstNameLabel"
+      StyleClass="centered-label"
       Grid.Row="0"
       Grid.Column="0"
       Text="Nazwa"
       VerticalOptions="Center"
-      HorizontalOptions="Center"
-      VerticalTextAlignment="Center"
-      HorizontalTextAlignment="Center" />
+      HorizontalOptions="Center" />
     <Entry
       x:Name="groupFormPage_firstNameEntry"
       Grid.Row="0"
@@ -37,6 +36,7 @@
       VerticalOptions="Center">
       <Button
         x:Name="groupFormPage_cancelButton"
+        StyleClass="cancel-button"
         Grid.Row="0"
         Grid.Column="0"
         Text="Anuluj"
@@ -45,6 +45,7 @@
         VerticalOptions="Center" />
       <Button
         x:Name="groupFormPage_submitButton"
+        StyleClass="confirm-button"
         Grid.Row="0"
         Grid.Column="1"
         Text="Zatwierdź"

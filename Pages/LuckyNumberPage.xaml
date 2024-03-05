@@ -19,32 +19,29 @@
     ColumnDefinitions="*, *">
     <Label
       x:Name="luckyNumberPage_titleLabel"
+      StyleClass="centered-label"
       Grid.Row="0"
       Grid.Column="0"
       Text="Dzisiejszy szczęśliwy numerek"
       VerticalOptions="Center"
-      HorizontalOptions="Center"
-      VerticalTextAlignment="Center"
-      HorizontalTextAlignment="Center"/>
+      HorizontalOptions="Center" />
     <Label
       x:Name="luckyNumberPage_numberLabel"
+      StyleClass="centered-label"
       Grid.Row="1"
       Grid.Column="0"
       Text="{Binding Path=LuckyNumber.Value, Source={x:Reference luckyNumberPage}}"
       FontSize="Large"
       VerticalOptions="Center"
-      HorizontalOptions="Center"
-      VerticalTextAlignment="Center"
-      HorizontalTextAlignment="Center"/>
+      HorizontalOptions="Center" />
     <Label
       x:Name="luckyNumberPage_archivedNumbersLabel"
+      StyleClass="centered-label"
       Grid.Row="0"
       Grid.Column="1"
       Text="Historyczne szczęśliwe numerki"
       VerticalOptions="Center"
-      HorizontalOptions="Center"
-      VerticalTextAlignment="Center"
-      HorizontalTextAlignment="Center"/>
+      HorizontalOptions="Center" />
     <CollectionView
       x:Name="luckyNumberPage_archivedNumbersCollectionView"
       Grid.Row="1"
@@ -67,22 +64,20 @@
             ColumnDefinitions="*, *">
             <Label
               x:Name="luckyNumberPage_archivedNumberDateLabel"
+              StyleClass="centered-label"
               Grid.Row="0"
               Grid.Column="0"
               Text="{Binding CreationDate, Converter={vc:DateTimeToDateConverter}}"
               HorizontalOptions="Center"
-              VerticalOptions="Center"
-              HorizontalTextAlignment="Center"
-              VerticalTextAlignment="Center" />
+              VerticalOptions="Center" />
             <Label
               x:Name="luckyNumberPage_archivedNumberValueLabel"
+              StyleClass="centered-label"
               Grid.Row="0"
               Grid.Column="1"
               Text="{Binding Value}"
               HorizontalOptions="Center"
-              VerticalOptions="Center"
-              HorizontalTextAlignment="Center"
-              VerticalTextAlignment="Center" />
+              VerticalOptions="Center" />
           </Grid>
         </DataTemplate>
       </CollectionView.ItemTemplate>

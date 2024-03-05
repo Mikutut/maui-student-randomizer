@@ -11,22 +11,20 @@
     VerticalOptions="Fill">
     <Label
       x:Name="studentEntry_lastNameLabel"
+      StyleClass="centered-label"
       Grid.Row="0"
       Grid.Column="0"
       Text="{Binding LastName}"
       HorizontalOptions="Center"
-      VerticalOptions="Center"
-      HorizontalTextAlignment="Center"
-      VerticalTextAlignment="Center" />
+      VerticalOptions="Center" />
     <Label
       x:Name="studentEntry_firstNameLabel"
+      StyleClass="centered-label"
       Grid.Row="0"
       Grid.Column="1"
       Text="{Binding FirstName}"
       HorizontalOptions="Center"
-      VerticalOptions="Center"
-      HorizontalTextAlignment="Center"
-      VerticalTextAlignment="Center" />
+      VerticalOptions="Center" />
     <Grid
       x:Name="studentEntry_buttonsGrid"
       Grid.Row="0"
@@ -44,12 +42,14 @@
         VerticalOptions="Center">
         <Button
           x:Name="studentEntry_updateButton"
+          StyleClass="action-button"
           ImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
           Clicked="studentEntry_updateButton_Clicked"
           VerticalOptions="Center"
           HorizontalOptions="Center" />
         <Button
           x:Name="studentEntry_deleteButton"
+          StyleClass="action-button"
           ImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
           Clicked="studentEntry_deleteButton_Clicked"
           VerticalOptions="Center"

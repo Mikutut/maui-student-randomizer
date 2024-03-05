@@ -10,13 +10,12 @@
     ColumnDefinitions="*, *">
     <Label
       x:Name="groupAddStudentPage_studentLabel"
+      StyleClass="centered-label"
       Grid.Row="0"
       Grid.Column="0"
       Text="Uczeń"
       VerticalOptions="Center"
       HorizontalOptions="Center"
-      HorizontalTextAlignment="Center"
-      VerticalTextAlignment="Center"
       />
     <Picker
       x:Name="groupAddStudentPage_studentPicker"
@@ -35,6 +34,7 @@
       ColumnDefinitions="*, *">
       <Button
         x:Name="groupAddStudentPage_cancelButton"
+        StyleClass="cancel-button"
         Grid.Row="0"
         Grid.Column="0"
         Text="Anuluj"
@@ -43,6 +43,7 @@
         HorizontalOptions="Center" />
       <Button
         x:Name="groupAddStudentPage_submitButton"
+        StyleClass="confirm-button"
         Grid.Row="0"
         Grid.Column="1"
         Text="Zatwierdź"

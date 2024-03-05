@@ -45,7 +45,7 @@ public partial class GroupAddStudentPage : ContentPage
 		InitializeComponent();
 	}
 
-	private void LoadStudents()
+	private async void LoadStudents()
 	{
 		Students = _studentDataService.GetAll(new GetAllStudentsInput()
 		{

@@ -10,19 +10,17 @@
     BindingContext="{Binding Record, Source={x:Reference attendanceRecordEntry}}">
     <Label
       x:Name="attendanceRecordEntry_LastNameLabel"
+      StyleClass="centered-label"
       Grid.Row="0"
       Grid.Column="0"
-      VerticalTextAlignment="Center"
-      HorizontalTextAlignment="Center"
       VerticalOptions="Center"
       HorizontalOptions="Center"
       Text="{Binding Student.LastName}" />
     <Label
       x:Name="attendanceRecordEntry_FirstNameLabel"
+      StyleClass="centered-label"
       Grid.Row="0"
       Grid.Column="1"
-      VerticalTextAlignment="Center"
-      HorizontalTextAlignment="Center"
       VerticalOptions="Center"
       HorizontalOptions="Center"
       Text="{Binding Student.FirstName}" />

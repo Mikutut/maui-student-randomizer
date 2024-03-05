@@ -12,13 +12,12 @@
   >
     <Label
       x:Name="studentFormPage_firstNameLabel"
+      StyleClass="centered-label"
       Grid.Row="0"
       Grid.Column="0"
       Text="Imię"
       VerticalOptions="Center"
-      HorizontalOptions="Center"
-      VerticalTextAlignment="Center"
-      HorizontalTextAlignment="Center" />
+      HorizontalOptions="Center" />
     <Entry
       x:Name="studentFormPage_firstNameEntry"
       Grid.Row="0"
@@ -28,13 +27,12 @@
       HorizontalOptions="Fill" />
     <Label
       x:Name="studentFormPage_lastNameLabel"
+      StyleClass="centered-label"
       Grid.Row="1"
       Grid.Column="0"
       Text="Nazwisko"
       VerticalOptions="Center"
-      HorizontalOptions="Center"
-      VerticalTextAlignment="Center"
-      HorizontalTextAlignment="Center" />
+      HorizontalOptions="Center"/>
     <Entry
       x:Name="studentFormPage_lastNameEntry"
       Grid.Row="1"
@@ -53,6 +51,7 @@
       VerticalOptions="Center">
       <Button
         x:Name="studentFormPage_cancelButton"
+        StyleClass="cancel-button"
         Grid.Row="0"
         Grid.Column="0"
         Text="Anuluj"
@@ -61,6 +60,7 @@
         VerticalOptions="Center" />
       <Button
         x:Name="studentFormPage_submitButton"
+        StyleClass="confirm-button"
         Grid.Row="0"
         Grid.Column="1"
         Text="Zatwierdź"

@@ -21,11 +21,9 @@
       Grid.Row="1"
       Grid.Column="0"
       x:Name="emptyCollectionView_Label"
+      StyleClass="centered-label"
       Text="Brak danych"
-      FontSize="32"
       VerticalOptions="Center" 
-      HorizontalOptions="Center"
-      HorizontalTextAlignment="Center"
-      VerticalTextAlignment="Center" />
+      HorizontalOptions="Center" />
   </Grid>
 </ContentView>

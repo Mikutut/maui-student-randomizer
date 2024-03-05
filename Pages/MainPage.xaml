@@ -14,12 +14,10 @@
     </Grid.ColumnDefinitions>
     <Label 
       x:Name="mainPage_titleLabel"
+      StyleClass="centered-label"
       Grid.Row="0"
       Grid.Column="0"
-      Text="Witaj! Co chciałbyś dzisiaj zrobić?"
-      FontSize="Large"
-      HorizontalTextAlignment="Center"
-      VerticalTextAlignment="Center" />
+      Text="Witaj! Co chciałbyś dzisiaj zrobić?" />
     <Grid
       Grid.Row="1"
       Grid.Column="0"

@@ -4,7 +4,8 @@
              x:Class="StudentRandomizer.Components.ImageTextButton"
              StyleClass="image-text-button">
   <Grid
-    x:Name="imageTextButton_mainGrid">
+    x:Name="imageTextButton_mainGrid"
+    StyleClass="image-text-button">
     <Grid.RowDefinitions>
       <RowDefinition Height="2*" />
       <RowDefinition Height="*" />
@@ -20,10 +21,9 @@
       Clicked="imageTextButton_button_Clicked" />
     <Label
       x:Name="imageTextButton_label"
+      StyleClass="centered-label"
       Grid.Row="1"
       Grid.Column="0"
-      HorizontalTextAlignment="Center"
-      VerticalTextAlignment="Center"
       Text="{Binding Path=Text}"/>
   </Grid>
 </ContentView>

@@ -1,0 +1,67 @@
+﻿#app {
+  -maui-shell-background: #272727;
+}
+
+^ContentPage {
+  background-color: #272727;
+  -maui-shell-background: #272727;
+  -maui-shell-title: #ff9f00;
+}
+
+^ContentPage ToolbarItem {
+  color: #ff9f00;
+}
+
+^ContentPage ToolbarItem Image {
+  color: #ff9f00;
+}
+
+.image-text-button > button {
+  background-color: #ff9f00;
+  color: #ff9f00;
+}
+
+.image-text-button > label {
+  color: #ff9f00;
+}
+
+.action-button {
+  background-color: #ff9f00;
+  color: #ffffff;
+}
+
+.cancel-button {
+  background-color: #ff0000;
+  color: white;
+}
+
+.confirm-button {
+  background-color: #00ee00;
+  color: white;
+}
+
+.centered-label {
+  text-align: center;
+}
+
+.full-screen-label {
+  font-size: 48;
+}
+
+.import-export-label {
+  color: #ff9f00;
+}
+
+#emptyCollectionView_Label {
+  font-size: 32;
+}
+
+#mainPage_titleLabel {
+  font-size: 40;
+}
+
+#newRollPage_studentOrderNumberLabel,
+#luckyNumberPage_numberLabel {
+  font-size: 64;
+  color: #ff9f00;
+}

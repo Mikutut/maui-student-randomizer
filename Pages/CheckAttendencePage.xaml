@@ -36,6 +36,7 @@
       Margin="10">
       <Button
         x:Name="checkAttendancePage_cancelButton"
+        StyleClass="cancel-button"
         Grid.Row="0"
         Grid.Column="0"
         Text="Anuluj"
@@ -44,6 +45,7 @@
         Clicked="checkAttendancePage_cancelButton_Clicked" />
       <Button
         x:Name="checkAttendancePage_submitButton"
+        StyleClass="confirm-button"
         Grid.Row="0"
         Grid.Column="1"
         Text="Zatwierdź"

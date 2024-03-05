@@ -14,23 +14,21 @@
     VerticalOptions="Fill">
     <Label
       x:Name="groupEntry_nameLabel"
+      StyleClass="centered-label"
       Grid.Row="0"
       Grid.Column="0"
       BindingContext="{Binding Group}"
       Text="{Binding Name}"
       HorizontalOptions="Center"
-      VerticalOptions="Center"
-      HorizontalTextAlignment="Center"
-      VerticalTextAlignment="Center" />
+      VerticalOptions="Center" />
     <Label
       x:Name="groupEntry_studentsCountLabel"
+      StyleClass="centered-label"
       Grid.Row="0"
       Grid.Column="1"
       Text="{Binding Group, Converter={vc:GroupStudentsCountConverter}}"
       HorizontalOptions="Center"
-      VerticalOptions="Center"
-      HorizontalTextAlignment="Center"
-      VerticalTextAlignment="Center" />
+      VerticalOptions="Center" />
     <Grid
       x:Name="groupEntry_buttonsGrid"
       Grid.Row="0"
@@ -48,24 +46,28 @@
         VerticalOptions="Center">
         <Button
           x:Name="groupClassEntry_rollStudentButton"
+          StyleClass="action-button"
           ImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
           Clicked="groupClassEntry_rollStudentButton_Clicked"
           VerticalOptions="Center"
           HorizontalOptions="Center" />
         <Button
           x:Name="groupEntry_addStudentButton"
+          StyleClass="action-button"
           ImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=+}"
           Clicked="groupEntry_addStudentButton_Clicked"
           VerticalOptions="Center"
           HorizontalOptions="Center" />
         <Button
           x:Name="groupEntry_updateButton"
+          StyleClass="action-button"
           ImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
           Clicked="groupEntry_updateButton_Clicked"
           VerticalOptions="Center"
           HorizontalOptions="Center" />
         <Button
           x:Name="groupEntry_deleteButton"
+          StyleClass="action-button"
           ImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
           Clicked="groupEntry_deleteButton_Clicked"
           VerticalOptions="Center"

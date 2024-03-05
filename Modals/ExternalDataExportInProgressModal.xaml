@@ -9,13 +9,11 @@
     ColumnDefinitions="*">
     <Label
       x:Name="externalDataPage_exportInProgressLabel"
+      StyleClass="centered-label, full-screen-label, import-export-label"
       Grid.Row="0"
       Grid.Column="0"
       Text="Eksport danych w toku. Proszę czekać..."
       HorizontalOptions="Center"
-      VerticalOptions="Center"
-      HorizontalTextAlignment="Center"
-      VerticalTextAlignment="Center"
-      FontSize="Large" />
+      VerticalOptions="Center" />
   </Grid>
 </ContentPage>

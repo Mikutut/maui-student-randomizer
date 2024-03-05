@@ -14,24 +14,22 @@
     VerticalOptions="Fill">
     <Label
       x:Name="schoolClassEntry_nameLabel"
+      StyleClass="centered-label"
       Grid.Row="0"
       Grid.Column="0"
       BindingContext="{Binding SchoolClass}"
       Text="{Binding Name}"
       HorizontalOptions="Center"
-      VerticalOptions="Center"
-      HorizontalTextAlignment="Center"
-      VerticalTextAlignment="Center" />
+      VerticalOptions="Center" />
     <Label
       x:Name="schoolClassEntry_studentsCountLabel"
+      StyleClass="centered-label"
       Grid.Row="0"
       Grid.Column="1"
       BindingContext="{x:Reference schoolClassEntry}"
       Text="{Binding SchoolClass, Converter={vc:SchoolClassStudentsCountConverter}}"
       HorizontalOptions="Center"
-      VerticalOptions="Center"
-      HorizontalTextAlignment="Center"
-      VerticalTextAlignment="Center" />
+      VerticalOptions="Center" />
     <Grid
       x:Name="schoolClassEntry_buttonsGrid"
       Grid.Row="0"
@@ -49,30 +47,35 @@
         VerticalOptions="Center">
         <Button
           x:Name="schoolClassEntry_rollStudentButton"
+          StyleClass="action-button"
           ImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
           Clicked="schoolClassEntry_rollStudentButton_Clicked"
           VerticalOptions="Center"
           HorizontalOptions="Center" />
         <Button
           x:Name="schoolClassEntry_checkAttendanceButton"
+          StyleClass="action-button"
           ImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
           Clicked="schoolClassEntry_checkAttendanceButton_Clicked"
           VerticalOptions="Center"
           HorizontalOptions="Center" />
         <Button
           x:Name="schoolClassEntry_addStudentButton"
+          StyleClass="action-button"
           ImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=+}"
           Clicked="schoolClassEntry_addStudentButton_Clicked"
           VerticalOptions="Center"
           HorizontalOptions="Center" />
         <Button
           x:Name="schoolClassEntry_updateButton"
+          StyleClass="action-button"
           ImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
           Clicked="schoolClassEntry_updateButton_Clicked"
           VerticalOptions="Center"
           HorizontalOptions="Center" />
         <Button
           x:Name="schoolClassEntry_deleteButton"
+          StyleClass="action-button"
           ImageSource="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
           Clicked="schoolClassEntry_deleteButton_Clicked"
           VerticalOptions="Center"
