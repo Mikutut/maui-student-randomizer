@@ -1,8 +1,8 @@
-- [ ] Import/export:
-    - [ ] Realizacja zapisu wpisanych osób do pliku txt z podzia³em na klasy
-    - [ ] Realizacja zapisu szczê¶liwego numerka
-    - [ ] Realizacja zapisu obecno¶ci
-    - [ ] Mo¿liwo¶æ wczytywania listy klasy
+- [X] Import/export:
+    - [X] Realizacja zapisu wpisanych osób do pliku txt z podzia³em na klasy
+    - [X] Realizacja zapisu szczê¶liwego numerka
+    - [X] Realizacja zapisu obecno¶ci
+    - [X] Mo¿liwo¶æ wczytywania listy klasy
 - [X] Mo¿liwo¶æ wylosowania osoby z wybranej listy
 - [X] Mo¿liwo¶æ edycji listy uczniów
 - [X] Uwzglêdnienie systemu szczê¶liwego numerka

@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CommunityToolkit.Maui;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using StudentRandomizer.Components;
 using StudentRandomizer.EntityFrameworkCore;
 using StudentRandomizer.Models;
 using StudentRandomizer.Pages;
 using StudentRandomizer.Services.Common;
+using StudentRandomizer.Services.ExternalData;
 using StudentRandomizer.Services.Groups;
 using StudentRandomizer.Services.LuckyNumbers;
 using StudentRandomizer.Services.SchoolClasses;
@@ -19,6 +21,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+			.UseMauiCommunityToolkit()
 			.AddDatabase()
 			.ConfigureRepositories()
 			.ConfigureServices()
@@ -65,6 +68,7 @@ public static class MauiProgram
 			.AddSingleton<NewRollPage>()
 			.AddSingleton<LuckyNumberPage>()
 			.AddSingleton<CheckAttendencePage>()
+			.AddSingleton<ExternalDataPage>()
 			.AddSingleton<MainPage>();
 
 		return builder;
@@ -94,7 +98,8 @@ public static class MauiProgram
 			.AddTransient<IGroupDataService, GroupDataService>()
 			.AddTransient<IRollManagementService<SchoolClass>, SchoolClassRollManagementService>()
 			.AddTransient<IRollManagementService<Group>, GroupRollManagementService>()
-			.AddTransient<ILuckyNumberDataService, LuckyNumberDataService>();
+			.AddTransient<ILuckyNumberDataService, LuckyNumberDataService>()
+			.AddTransient<IExternalDataService, ExternalDataService>();
 
 		return builder;
 	}

@@ -10,5 +10,6 @@ namespace StudentRandomizer.Services.LuckyNumbers
     public interface ILuckyNumberDataService
     {
         LuckyNumber GetOrCreate(DateTime luckyNumberDate);
+        ICollection<LuckyNumber> GetAll();
     }
 }

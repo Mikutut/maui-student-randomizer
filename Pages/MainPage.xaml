@@ -28,9 +28,9 @@
       RowSpacing="20">
       <Grid.RowDefinitions>
         <RowDefinition Height="*" />
+        <RowDefinition Height="*" />
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*" />
         <ColumnDefinition Width="*" />
         <ColumnDefinition Width="*" />
         <ColumnDefinition Width="*" />
@@ -70,8 +70,8 @@
         Clicked="mainPage_groupsListButton_Clicked" />
       <components:ImageTextButton 
         x:Name="mainPage_luckyNumberButton"
-        Grid.Row="0"
-        Grid.Column="3"
+        Grid.Row="1"
+        Grid.Column="0"
         Text="Szczęśliwy numerek"
         Image="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
         HeightRequest="200"
@@ -79,6 +79,17 @@
         HorizontalOptions="Center"
         VerticalOptions="Center"
         Clicked="mainPage_luckyNumberButton_Clicked" />
+      <components:ImageTextButton 
+        x:Name="mainPage_externalDataButton"
+        Grid.Row="1"
+        Grid.Column="1"
+        Text="Import/eksport danych"
+        Image="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=}"
+        HeightRequest="200"
+        WidthRequest="200"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        Clicked="mainPage_externalDataButton_Clicked" />
     </Grid>
   </Grid>
 </ContentPage>

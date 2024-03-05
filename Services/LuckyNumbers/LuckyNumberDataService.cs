@@ -25,6 +25,14 @@ namespace StudentRandomizer.Services.LuckyNumbers
 			_schoolClassDataService = schoolClassDataService;
 		}
 
+		public ICollection<LuckyNumber> GetAll()
+		{
+			return _luckyNumberRepository
+				.GetAll()
+				.OrderByDescending(x => x.CreationDate)
+				.ToList();
+		}
+
 		public LuckyNumber GetOrCreate(DateTime luckyNumberDate)
 		{
 			var luckyNumber = _luckyNumberRepository.FirstOrDefault(x => x.CreationDate.Date.Equals(luckyNumberDate.Date));

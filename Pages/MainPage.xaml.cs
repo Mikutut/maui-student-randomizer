@@ -26,5 +26,10 @@ public partial class MainPage : ContentPage
 	{
 		await Shell.Current.GoToAsync("//luckynumber");
 	}
+
+	private async void mainPage_externalDataButton_Clicked(object obj)
+	{
+		await Shell.Current.GoToAsync("//externaldata");
+	}
 }
 

@@ -67,5 +67,9 @@
     Title="Szczęśliwy numerek"
     ContentTemplate="{DataTemplate pages:LuckyNumberPage}"
     Route="luckynumber" />
+  <ShellContent
+    Title="Import/eksport danych"
+    ContentTemplate="{DataTemplate pages:ExternalDataPage}"
+    Route="externaldata" />
 
 </Shell>
